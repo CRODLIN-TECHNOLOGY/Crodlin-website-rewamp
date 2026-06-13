@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Play, X } from 'lucide-react';
 
 const testimonials = [
   {
@@ -9,6 +10,7 @@ const testimonials = [
     company: 'ARES',
     quote: 'They delivered the MVP in 4 weeks, and it was flawless. The team understood our complex requirements from day one.',
     img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop',
+    videoSrc: null, // replace with actual video URL e.g. '/videos/sarah.mp4'
   },
   {
     name: 'Rahul Desai',
@@ -16,13 +18,15 @@ const testimonials = [
     company: 'RetailPro',
     quote: 'Our conversion rates doubled after the revamp. Crodlin rebuilt our entire frontend and optimised the checkout funnel beautifully.',
     img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop',
+    videoSrc: null,
   },
   {
     name: 'Emily Chen',
     role: 'Director of Engineering, TechFlow',
     company: 'TechFlow',
-    quote: 'The cleanest code we\'ve ever received from an agency. Their architecture has scaled effortlessly to 50k users.',
+    quote: "The cleanest code we've ever received from an agency. Their architecture has scaled effortlessly to 50k users.",
     img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop',
+    videoSrc: null,
   },
   {
     name: 'Anita Kumar',
@@ -30,12 +34,19 @@ const testimonials = [
     company: 'HealthSync',
     quote: 'Scale was an issue until Crodlin stepped in. They migrated our monolith to microservices with zero downtime.',
     img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop',
+    videoSrc: null,
   },
 ];
 
 const clients = ['ARES Energetics', 'RetailPro', 'TechFlow', 'HealthSync', 'Orbix Labs', 'NovaMed', 'Stackr', 'Loopify'];
 
 export default function TestimonialsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [videoOpen, setVideoOpen] = useState(false);
+
+  const active = testimonials[activeIndex];
+  const rest = testimonials.filter((_, i) => i !== activeIndex);
+
   return (
     <section className="bg-[#0D0D0D] py-20 md:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -54,58 +65,86 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Grid — big left + stacked right */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-4">
+        {/* Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-4">
 
-          {/* LEFT — featured big card */}
+          {/* LEFT — featured spotlight card */}
           <div
-            className="relative rounded-2xl overflow-hidden"
+            className="relative rounded-2xl overflow-hidden cursor-pointer group"
             style={{ minHeight: '520px' }}
+            onClick={() => setVideoOpen(true)}
           >
             <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
-              style={{ backgroundImage: `url(${testimonials[0].img})` }}
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+              style={{ backgroundImage: `url(${active.img})` }}
             />
-            {/* Dark gradient over image */}
             <div
               className="absolute inset-0"
-              style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.5) 55%, rgba(10,10,10,0.2) 100%)' }}
+              style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.45) 55%, rgba(10,10,10,0.15) 100%)' }}
             />
 
+            {/* Play button */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-[#D85A30] flex items-center justify-center shadow-2xl shadow-[#D85A30]/40 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
+                <Play className="w-6 h-6 text-white fill-white ml-1" />
+              </div>
+            </div>
+
+            {/* Content */}
             <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10">
               <p className="text-white text-xl md:text-2xl font-light leading-relaxed mb-8" style={{ maxWidth: '520px' }}>
-                &ldquo;{testimonials[0].quote}&rdquo;
+                &ldquo;{active.quote}&rdquo;
               </p>
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-full bg-cover bg-center border-2 shrink-0"
-                  style={{ backgroundImage: `url(${testimonials[0].img})`, borderColor: '#D85A30' }}
-                />
-                <div>
-                  <div className="text-white font-semibold text-sm">{testimonials[0].name}</div>
-                  <div className="text-[#888] text-xs">{testimonials[0].role}</div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-10 h-10 rounded-full bg-cover bg-center border-2 shrink-0"
+                    style={{ backgroundImage: `url(${active.img})`, borderColor: '#D85A30' }}
+                  />
+                  <div>
+                    <div className="text-white font-semibold text-sm">{active.name}</div>
+                    <div className="text-[#888] text-xs">{active.role}</div>
+                  </div>
                 </div>
+                <span className="text-[10px] uppercase tracking-widest text-[#D85A30] border border-[#D85A30]/30 px-3 py-1 rounded-full">
+                  ▶ Play video
+                </span>
               </div>
             </div>
           </div>
 
-          {/* RIGHT — stacked cards */}
+          {/* RIGHT — stacked clickable cards */}
           <div className="flex flex-col gap-4">
-            {testimonials.slice(1).map((t, i) => (
+            {rest.map((t, i) => (
               <div
-                key={i}
-                className="relative rounded-2xl overflow-hidden flex-1"
-                style={{ minHeight: '155px', background: '#111', border: '1px solid rgba(255,255,255,0.06)' }}
+                key={t.name}
+                onClick={() => {
+                  const idx = testimonials.findIndex(x => x.name === t.name);
+                  setActiveIndex(idx);
+                }}
+                className="relative rounded-2xl overflow-hidden flex-1 cursor-pointer group"
+                style={{
+                  minHeight: '155px',
+                  border: '1px solid rgba(255,255,255,0.06)',
+                  transition: 'border-color 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(216,90,48,0.45)')}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
               >
                 {/* Faint bg image */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center opacity-20"
+                  className="absolute inset-0 bg-cover bg-center opacity-25 transition-opacity duration-300 group-hover:opacity-40"
                   style={{ backgroundImage: `url(${t.img})` }}
                 />
-                <div className="absolute inset-0 bg-[#111]/60" />
+                <div className="absolute inset-0 bg-[#0f0f0f]/70" />
+
+                {/* Play icon on hover */}
+                <div className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-[#D85A30] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 scale-75 group-hover:scale-100">
+                  <Play className="w-3 h-3 text-white fill-white ml-0.5" />
+                </div>
 
                 <div className="relative z-10 p-6 flex flex-col justify-between h-full">
-                  <p className="text-white/80 text-sm leading-relaxed">
+                  <p className="text-white/75 text-sm leading-relaxed line-clamp-3">
                     &ldquo;{t.quote}&rdquo;
                   </p>
                   <div className="flex items-center gap-3 mt-4">
@@ -122,18 +161,15 @@ export default function TestimonialsSection() {
               </div>
             ))}
           </div>
-
         </div>
       </div>
 
       {/* Marquee — client names */}
-      <div className="mt-16 border-t border-[#1A1A1A] pt-0 overflow-hidden">
-        <div className="flex items-center gap-0 border-b border-[#1A1A1A]">
-          {/* Label */}
+      <div className="mt-16 border-t border-[#1A1A1A] overflow-hidden">
+        <div className="flex items-center border-b border-[#1A1A1A]">
           <div className="shrink-0 px-8 py-5 border-r border-[#1A1A1A]">
             <span className="text-[10px] uppercase tracking-[0.2em] text-[#444] font-semibold whitespace-nowrap">Trusted by</span>
           </div>
-          {/* Scrolling names */}
           <div className="overflow-hidden flex-1">
             <div className="whitespace-nowrap flex animate-marquee">
               {[...clients, ...clients, ...clients].map((c, i) => (
@@ -150,6 +186,43 @@ export default function TestimonialsSection() {
         </div>
       </div>
 
+      {/* Video modal */}
+      {videoOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setVideoOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-3xl mx-4 rounded-2xl overflow-hidden bg-[#111]"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setVideoOpen(false)}
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+            >
+              <X className="w-4 h-4 text-white" />
+            </button>
+
+            {active.videoSrc ? (
+              <video
+                src={active.videoSrc}
+                controls
+                autoPlay
+                className="w-full aspect-video"
+              />
+            ) : (
+              <div className="w-full aspect-video flex flex-col items-center justify-center gap-4">
+                <div
+                  className="w-20 h-20 rounded-full bg-cover bg-center border-2 border-[#D85A30]"
+                  style={{ backgroundImage: `url(${active.img})` }}
+                />
+                <p className="text-white font-semibold">{active.name}</p>
+                <p className="text-[#555] text-sm">Video coming soon</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
