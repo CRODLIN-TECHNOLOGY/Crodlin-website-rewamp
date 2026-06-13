@@ -31,39 +31,23 @@ export default function ServicesCanvas({ scrollRef }: Props) {
     const group = new THREE.Group();
     scene.add(group);
 
-    // Outer ember ring
-    const outerGeo = new THREE.TorusGeometry(1.85, 0.014, 12, 140);
-    const outerMat = new THREE.MeshBasicMaterial({ color: 0xd85a30, transparent: true, opacity: 0.75 });
-    const outerRing = new THREE.Mesh(outerGeo, outerMat);
-    group.add(outerRing);
-
-    // Second ring (white, thinner)
-    const innerGeo = new THREE.TorusGeometry(1.45, 0.008, 8, 110);
-    const innerMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.12 });
-    const innerRing = new THREE.Mesh(innerGeo, innerMat);
-    group.add(innerRing);
 
     // Logo disc (Crodlin logo as texture)
     const texLoader = new THREE.TextureLoader();
     const logoTex = texLoader.load('/logo_without_name-removebg-preview.png');
     logoTex.colorSpace = THREE.SRGBColorSpace;
 
-    const discGeo = new THREE.CircleGeometry(1.05, 64);
+    const discGeo = new THREE.PlaneGeometry(3.2, 3.2);
     const discMat = new THREE.MeshBasicMaterial({
-      map:        logoTex,
+      map:         logoTex,
       transparent: true,
       depthWrite:  false,
       side:        THREE.DoubleSide,
+      alphaTest:   0.05,
     });
     const disc = new THREE.Mesh(discGeo, discMat);
     group.add(disc);
 
-    // Faint glow disc behind logo
-    const glowGeo = new THREE.CircleGeometry(1.2, 64);
-    const glowMat = new THREE.MeshBasicMaterial({ color: 0xd85a30, transparent: true, opacity: 0.06, depthWrite: false });
-    const glow = new THREE.Mesh(glowGeo, glowMat);
-    glow.position.z = -0.01;
-    group.add(glow);
 
     const bubbles: never[] = []; // bubbles removed
 
@@ -101,8 +85,6 @@ export default function ServicesCanvas({ scrollRef }: Props) {
       group.rotation.y = scroll * Math.PI * 3 + cmx * 0.25;
       group.rotation.x = -cmy * 0.18;
 
-      outerRing.rotation.z = t * 0.25;
-      innerRing.rotation.z = -t * 0.18;
 
       void bubbles; // no bubbles
 

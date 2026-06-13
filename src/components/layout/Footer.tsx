@@ -69,32 +69,29 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-[#1A1A1A] mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-[#444]">© 2026 Crodlin Technology. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="#" className="text-xs text-[#444] hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-xs text-[#444] hover:text-white transition-colors">Terms</Link>
-          </div>
-        </div>
+        <div className="border-t border-[#1A1A1A] mt-12" />
       </div>
 
       {/* ── Large logo stamp ──────────────────────────── */}
-      <div className="flex justify-center pb-4 px-6">
-        <div
-          className="relative overflow-hidden"
-          style={{ height: 'clamp(60px, 7vw, 110px)', width: '100%', maxWidth: '640px' }}
-        >
-          <Image
-            src="/footer.png"
-            alt="Crodlin"
-            fill
-            className="object-contain object-center"
-            style={{ opacity: 0.55 }}
-            priority={false}
-          />
-          {/* Top fade */}
-          <div className="absolute top-0 left-0 right-0 h-5 bg-gradient-to-b from-[#0D0D0D] to-transparent pointer-events-none" />
+      <div className="relative w-full overflow-hidden" style={{ height: 'clamp(120px, 18vw, 280px)' }}>
+        <Image
+          src="/footer.png"
+          alt="Crodlin"
+          fill
+          className="object-contain object-center"
+          style={{ opacity: 0.6 }}
+          priority={false}
+        />
+        <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[#0D0D0D] to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[#0D0D0D] to-transparent pointer-events-none" />
+      </div>
+
+      {/* ── Bottom bar — below the image ──────────────── */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p className="text-xs text-[#444]">© 2026 Crodlin Technology. All rights reserved.</p>
+        <div className="flex gap-4">
+          <Link href="#" className="text-xs text-[#444] hover:text-white transition-colors">Privacy Policy</Link>
+          <Link href="#" className="text-xs text-[#444] hover:text-white transition-colors">Terms</Link>
         </div>
       </div>
 
