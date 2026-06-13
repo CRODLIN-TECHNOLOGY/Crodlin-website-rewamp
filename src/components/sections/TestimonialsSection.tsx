@@ -62,7 +62,7 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
+        <div className="reveal flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
           <div>
             <span className="text-[10px] md:text-xs uppercase tracking-widest font-medium text-[#D85A30] mb-3 block">
               CLIENT VOICES
@@ -89,7 +89,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Main Testimonial Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="reveal reveal-delay-1 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
 
           {/* Left — Video / Image */}
           <div

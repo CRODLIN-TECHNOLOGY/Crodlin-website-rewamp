@@ -19,8 +19,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-[#0D0D0D]/90 backdrop-blur-md border-b border-white/[0.06] py-4'
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -31,9 +33,9 @@ export default function Navbar() {
             alt="Crodlin Logo" 
             width={32} 
             height={32} 
-            className={`object-contain group-hover:scale-105 transition-transform ${!scrolled ? 'brightness-0 invert' : ''}`}
+            className="object-contain group-hover:scale-105 transition-transform brightness-0 invert"
           />
-          <span className={`text-lg md:text-xl font-bold tracking-tight ${!scrolled ? 'text-white' : 'text-[#0D0D0D]'}`}>Crodlin</span>
+          <span className="text-lg md:text-xl font-bold tracking-tight text-white">Crodlin</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -43,7 +45,7 @@ export default function Navbar() {
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className={`text-sm font-medium transition-colors ${!scrolled ? 'text-white/80 hover:text-white' : 'text-[#5A5A5A] hover:text-[#0D0D0D]'}`}
+                className="text-sm font-medium transition-colors text-white/70 hover:text-white"
               >
                 {item}
               </Link>
@@ -61,18 +63,18 @@ export default function Navbar() {
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <button className={`${!scrolled ? 'text-white' : 'text-[#0D0D0D]'} p-2`}>
+              <button className="text-white p-2">
                 <Menu className="w-6 h-6" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-white flex flex-col gap-8 pt-16 border-l-0">
+            <SheetContent side="right" className="bg-[#0D0D0D] flex flex-col gap-8 pt-16 border-l border-white/[0.06]">
               <SheetTitle className="sr-only">Menu</SheetTitle>
               <div className="flex flex-col gap-6 text-center">
                 {['Services', 'Work', 'Blog', 'About'].map((item) => (
                   <Link
                     key={item}
                     href={`#${item.toLowerCase()}`}
-                    className="text-xl font-semibold text-[#0D0D0D] hover:text-[#D85A30] transition-colors"
+                    className="text-xl font-semibold text-white hover:text-[#D85A30] transition-colors"
                   >
                     {item}
                   </Link>

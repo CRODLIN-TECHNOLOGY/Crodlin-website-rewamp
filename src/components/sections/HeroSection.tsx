@@ -1,79 +1,99 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const HeroCanvas = dynamic(() => import('@/components/three/HeroCanvas'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-[#0D0D0D]" />,
+});
 
 export default function HeroSection() {
   return (
-    <section className="bg-[#0D0D0D] pt-32 pb-0 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-start">
-        
-        {/* Left Column */}
-        <div className="flex flex-col items-start z-10 pt-8 lg:pt-12">
-          <div className="inline-block border border-[#D85A30]/50 text-[#D85A30] bg-[#D85A30]/5 backdrop-blur-sm text-[10px] md:text-xs uppercase tracking-widest font-semibold px-4 py-1.5 rounded-full mb-6">
+    <section className="relative min-h-screen bg-[#0D0D0D] overflow-hidden flex flex-col">
+      {/* Three.js background */}
+      <HeroCanvas />
+
+      {/* Radial vignette to focus centre */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 60% at 50% 50%, transparent 0%, #0d0d0d 100%)',
+          opacity: 0.6,
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col flex-1 max-w-7xl mx-auto px-6 md:px-12 pt-40 pb-0 w-full">
+        {/* Eyebrow */}
+        <div className="flex items-center gap-3 mb-8">
+          <span className="inline-flex items-center gap-2 border border-[#D85A30]/40 text-[#D85A30] bg-[#D85A30]/5 backdrop-blur-sm text-[10px] uppercase tracking-[0.2em] font-semibold px-4 py-1.5 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D85A30] animate-pulse" />
             SOFTWARE · AI · MOBILE
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
-            We build software<br />
-            that <span className="text-[#D85A30]">scales</span> your<br />
-            business.
-          </h1>
-          
-          <p className="text-[#A0A0A0] text-sm md:text-base max-w-md mt-6 leading-relaxed font-light">
-            From MVPs to enterprise systems — we design, build, and ship software that moves fast and lasts long.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center gap-6 mt-10 w-full sm:w-auto">
-            <Link 
-              href="#contact" 
-              className="bg-[#D85A30] hover:bg-[#A03D1A] text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold transition-colors w-full sm:w-auto text-center text-sm md:text-base"
-            >
-              Get a free consultation
-            </Link>
-            <Link 
-              href="#work" 
-              className="text-white hover:text-[#D85A30] group flex items-center justify-center gap-2 font-medium transition-colors text-sm md:text-base w-full sm:w-auto"
-            >
-              See our work 
-              <span className="group-hover:translate-y-1 transition-transform">↓</span>
-            </Link>
-          </div>
+          </span>
         </div>
 
-        {/* Right Column (Video) */}
-        <div className="relative w-full aspect-[4/3] lg:aspect-[4/5] xl:aspect-[16/9] rounded-2xl overflow-hidden ring-1 ring-[#D85A30]/30 shadow-2xl shadow-[#D85A30]/5 z-10 self-center lg:mt-8 group">
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+        {/* Headline */}
+        <h1 className="font-heading text-[clamp(3rem,8vw,7rem)] font-black leading-[0.95] tracking-[-0.03em] text-white max-w-4xl">
+          We build<br />
+          software that{' '}
+          <em className="not-italic text-[#D85A30]">scales</em>
+          <br />
+          your business.
+        </h1>
+
+        {/* Sub */}
+        <p className="text-[#888] text-base md:text-lg max-w-md mt-8 leading-relaxed font-light">
+          From MVPs to enterprise systems — we design, build, and ship
+          software that moves fast and lasts long.
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-10">
+          <Link
+            href="#contact"
+            className="bg-[#D85A30] hover:bg-[#BF4D25] text-white px-8 py-4 rounded-full font-semibold transition-colors text-sm tracking-wide"
           >
-            <source src="/Hero_section.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/20 to-transparent opacity-90 pointer-events-none"></div>
-          
-          {/* Floating badge over video */}
-          <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 flex items-center gap-4 animate-[bounce_5s_infinite_alternate]">
-            <div className="w-10 h-10 rounded-full bg-[#D85A30] flex items-center justify-center text-white font-bold">
-              10x
-            </div>
-            <div>
-              <p className="text-white text-sm font-semibold">Faster Delivery</p>
-              <p className="text-white/60 text-xs">Than traditional agencies</p>
-            </div>
-          </div>
+            Get a free consultation
+          </Link>
+          <Link
+            href="#work"
+            className="text-white/70 hover:text-white group flex items-center gap-2 font-medium transition-colors text-sm"
+          >
+            See our work
+            <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
+          </Link>
         </div>
-        
+
+        {/* Stats row */}
+        <div className="mt-auto pt-20 pb-12 grid grid-cols-3 gap-8 max-w-lg border-t border-white/[0.08]">
+          {[
+            { value: '50+', label: 'Projects shipped' },
+            { value: '4 wk', label: 'Avg. MVP delivery' },
+            { value: '100%', label: 'On-time rate' },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="font-heading text-2xl md:text-3xl font-black text-white tracking-tight">
+                {s.value}
+              </div>
+              <div className="text-[#555] text-xs uppercase tracking-widest mt-1">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Marquee Ticker */}
-      <div className="w-full overflow-hidden bg-[#D85A30] h-[40px] flex items-center mt-24">
+      {/* Marquee ticker */}
+      <div className="relative z-10 w-full overflow-hidden bg-[#D85A30] h-[40px] flex items-center">
         <div className="whitespace-nowrap flex font-mono text-sm text-white animate-marquee">
-          <span className="mx-4">NEXT.JS · REACT NATIVE · DJANGO · AI/ML · POSTGRESQL · SUPABASE · TAILWIND · FIGMA · AWS ·</span>
-          <span className="mx-4">NEXT.JS · REACT NATIVE · DJANGO · AI/ML · POSTGRESQL · SUPABASE · TAILWIND · FIGMA · AWS ·</span>
-          <span className="mx-4">NEXT.JS · REACT NATIVE · DJANGO · AI/ML · POSTGRESQL · SUPABASE · TAILWIND · FIGMA · AWS ·</span>
-          <span className="mx-4">NEXT.JS · REACT NATIVE · DJANGO · AI/ML · POSTGRESQL · SUPABASE · TAILWIND · FIGMA · AWS ·</span>
-          <span className="mx-4">NEXT.JS · REACT NATIVE · DJANGO · AI/ML · POSTGRESQL · SUPABASE · TAILWIND · FIGMA · AWS ·</span>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span key={i} className="mx-4">
+              NEXT.JS · REACT NATIVE · DJANGO · AI/ML · POSTGRESQL · SUPABASE · TAILWIND · FIGMA · AWS ·
+            </span>
+          ))}
         </div>
       </div>
     </section>

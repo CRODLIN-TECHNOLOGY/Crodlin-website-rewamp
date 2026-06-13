@@ -18,7 +18,7 @@ export default function TrustStrip() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Subtle Headline */}
-        <p className="text-center text-[10px] md:text-xs font-bold text-[#A0A0A0] uppercase tracking-[0.25em] mb-12">
+        <p className="reveal text-center text-[10px] md:text-xs font-bold text-[#A0A0A0] uppercase tracking-[0.25em] mb-12">
           Trusted by businesses across India and beyond
         </p>
         

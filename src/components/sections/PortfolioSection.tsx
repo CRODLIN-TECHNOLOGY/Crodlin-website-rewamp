@@ -66,12 +66,12 @@ export default function PortfolioSection() {
     <section id="work" className="bg-[#0D0D0D] py-24 md:py-32 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center">
         
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center mb-10">
+        <h2 className="reveal text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white text-center mb-10">
           Innovation, Engineered by Crodlin
         </h2>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center items-center gap-3 mb-16 max-w-4xl">
+        <div className="reveal reveal-delay-1 flex flex-wrap justify-center items-center gap-3 mb-16 max-w-4xl">
           <button 
             onClick={handlePrev}
             className="w-10 h-10 rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] flex items-center justify-center text-white transition-colors border border-[#333]"

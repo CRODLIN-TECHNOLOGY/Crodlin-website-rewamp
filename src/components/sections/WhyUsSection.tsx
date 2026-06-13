@@ -36,17 +36,17 @@ export default function WhyUsSection() {
   return (
     <section className="bg-[#0D0D0D] py-24 md:py-32 overflow-hidden border-t border-[#1A1A1A]">
       <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
-        <span className="text-[10px] md:text-xs uppercase tracking-widest font-medium text-[#D85A30] mb-3 block">
+        <span className="reveal text-[10px] md:text-xs uppercase tracking-widest font-medium text-[#D85A30] mb-3 block">
           THE CRODLIN DIFFERENCE
         </span>
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
+        <h2 className="reveal reveal-delay-1 text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
           Not your average <br className="hidden md:block"/>
           <span className="text-[#555]">development agency.</span>
         </h2>
       </div>
 
       {/* Interactive Expanding Accordion */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-[600px] md:h-[500px] lg:h-[600px] flex flex-col md:flex-row gap-4">
+      <div className="reveal reveal-delay-2 max-w-7xl mx-auto px-6 md:px-12 h-[600px] md:h-[500px] lg:h-[600px] flex flex-col md:flex-row gap-4">
         {reasons.map((reason, idx) => {
           const isActive = hoveredIndex === idx;
 

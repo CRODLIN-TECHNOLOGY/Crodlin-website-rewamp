@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Syne, Caveat } from 'next/font/google'
 import { ThemeProvider } from '@/components/common/ThemeProvider'
+import ScrollRevealInit from '@/components/common/ScrollRevealInit'
 import { Toaster } from '@/components/ui/sonner'
 import { Analytics } from '@vercel/analytics/react'
 import { siteConfig } from '@/lib/metadata'
@@ -14,6 +15,18 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+})
+
+const syne = Syne({
+  variable: '--font-syne',
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
+})
+
+const caveat = Caveat({
+  variable: '--font-caveat',
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -35,9 +48,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${caveat.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
+          <ScrollRevealInit />
           {children}
           <Toaster />
           <Analytics />
