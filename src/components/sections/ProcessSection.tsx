@@ -89,11 +89,11 @@ export default function ProcessSection() {
       style={{ minHeight: '100vh' }}
     >
       {/* Section header */}
-      <div className="relative z-10 text-center pt-20 pb-4 px-6">
-        <span className="text-xs uppercase tracking-widest font-medium text-[#D85A30] mb-4 block">
+      <div className="relative z-10 pt-20 pb-4 px-6 max-w-7xl mx-auto w-full">
+        <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
           HOW IT WORKS
         </span>
-        <h2 className="font-heading text-3xl md:text-5xl lg:text-[3.5rem] font-black tracking-tight text-white leading-tight">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
           Simple process,{' '}
           <span className="text-[#D85A30]">serious results</span>
         </h2>

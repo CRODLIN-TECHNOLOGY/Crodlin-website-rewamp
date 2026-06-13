@@ -74,7 +74,7 @@ export default function BlogSection() {
 
           {/* LEFT — heading */}
           <div className="hidden md:flex flex-col justify-between shrink-0 py-2"
-            style={{ width: '420px', paddingLeft: 'max(48px, calc((100vw - 1280px) / 2 + 48px))', paddingRight: '32px' }}
+            style={{ width: '380px', paddingLeft: '48px', paddingRight: '24px' }}
           >
             <div>
               <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">

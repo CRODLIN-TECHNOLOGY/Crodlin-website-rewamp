@@ -52,15 +52,15 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Header */}
-        <div className="mb-12 text-center">
-          <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
+        <div className="mb-12">
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
             CLIENT VOICES
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
             Trusted by ambitious<br />
             <span className="text-[#D85A30]">teams worldwide</span>
           </h2>
-          <p className="text-[#555] text-sm md:text-base mt-4 max-w-md mx-auto leading-relaxed">
+          <p className="text-[#555] text-sm md:text-base mt-4 max-w-md leading-relaxed">
             From startups to scaling enterprises — here's what our clients say.
           </p>
         </div>

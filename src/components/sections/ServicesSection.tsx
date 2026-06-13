@@ -1,218 +1,233 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-import { IconCode, IconBulb, IconRobot, IconDeviceMobile } from '@tabler/icons-react';
-import Link from 'next/link';
-
-const ServicesCanvas = dynamic(() => import('@/components/three/ServicesCanvas'), { ssr: false });
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const services = [
   {
-    num: '01', icon: IconCode, side: 'left' as const,
+    id: 1,
+    number: '01',
     title: 'Software Development',
-    desc:  'Custom web apps, dashboards, and SaaS platforms built to scale.',
-    tags:  ['Next.js', 'Django', 'PostgreSQL'],
-    img:   'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop',
+    description: 'Custom web apps, SaaS platforms, and dashboards engineered to scale with your business.',
+    imagePath: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop',
   },
   {
-    num: '02', icon: IconBulb, side: 'right' as const,
+    id: 2,
+    number: '02',
     title: 'IT Consultancy',
-    desc:  'Tech strategy, architecture decisions, and team augmentation.',
-    tags:  ['Audits', 'Roadmaps', 'DevOps'],
-    img:   'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop',
+    description: 'Strategic tech roadmaps, architecture reviews, and expert guidance for your digital transformation.',
+    imagePath: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop',
   },
   {
-    num: '03', icon: IconRobot, side: 'left' as const,
+    id: 3,
+    number: '03',
     title: 'AI Solutions',
-    desc:  'LLM pipelines, intelligent automation, data extraction systems.',
-    tags:  ['Python', 'LangChain', 'OpenAI'],
-    img:   'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format&fit=crop',
+    description: 'LLM pipelines, intelligent automation, and data extraction systems that drive real outcomes.',
+    imagePath: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop',
   },
   {
-    num: '04', icon: IconDeviceMobile, side: 'right' as const,
+    id: 4,
+    number: '04',
     title: 'Mobile Apps',
-    desc:  'Cross-platform apps that feel truly native on iOS and Android.',
-    tags:  ['React Native', 'Expo', 'Swift'],
-    img:   'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop',
+    description: 'Cross-platform iOS and Android apps that feel truly native and perform flawlessly.',
+    imagePath: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop',
   },
-] as const;
+  {
+    id: 5,
+    number: '05',
+    title: 'Cloud & DevOps',
+    description: 'Infrastructure that scales effortlessly — CI/CD pipelines, containerisation, and 99.9% uptime.',
+    imagePath: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
+  },
+  {
+    id: 6,
+    number: '06',
+    title: 'UI / UX Design',
+    description: 'Beautiful, conversion-focused interfaces built for real users — not just for screenshots.',
+    imagePath: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop',
+  },
+];
 
-const RANGES = [
-  [0.05, 0.30],
-  [0.25, 0.50],
-  [0.45, 0.70],
-  [0.63, 0.88],
-] as const;
-
-function easeOutCubic(t: number) {
-  return 1 - Math.pow(1 - t, 3);
-}
+const helvetica: React.CSSProperties = {
+  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+};
 
 export default function ServicesSection() {
-  const sectionRef   = useRef<HTMLElement>(null);
-  const scrollPctRef = useRef(0);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    // Use data-card attribute — avoids ref-conflict with mobile duplicates
-    const getCards = () =>
-      Array.from(section.querySelectorAll<HTMLElement>('[data-card]'))
-        .sort((a, b) => Number(a.dataset.card) - Number(b.dataset.card));
-
-    // Wait one frame for DOM to settle, then hide cards
-    const initTimer = setTimeout(() => {
-      getCards().forEach((el) => {
-        el.style.opacity    = '0';
-        el.style.transform  = 'translateY(56px)';
-        el.style.transition = 'none';
-      });
-    }, 50);
-
-    const update = () => {
-      const rect   = section.getBoundingClientRect();
-      const total  = section.offsetHeight - window.innerHeight;
-      if (total <= 0) return;
-      const pct = Math.max(0, Math.min(1, -rect.top / total));
-      scrollPctRef.current = pct;
-
-      getCards().forEach((el, i) => {
-        const [start, end] = RANGES[i] ?? [0, 1];
-        const raw = Math.max(0, Math.min(1, (pct - start) / (end - start)));
-        const p   = easeOutCubic(raw);
-        el.style.opacity   = String(p);
-        el.style.transform = `translateY(${(1 - p) * 56}px)`;
-      });
-    };
-
-    window.addEventListener('scroll', update, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', update);
-      clearTimeout(initTimer);
-    };
-  }, []);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section
-      ref={sectionRef}
       id="services"
-      className="relative bg-[#0A0A0A]"
-      style={{ minHeight: '220vh' }}
+      className="py-16 lg:py-24"
+      style={{ background: '#0A0A0A', ...helvetica }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
-
-        {/* Ambient glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#D85A30]/8 rounded-full blur-[130px]" />
-        </div>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="relative z-10 text-center pt-5 pb-1 px-6 shrink-0">
-          <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-2 block">
-            WHAT WE DO
-          </span>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white mb-2">
-            Services built for{' '}
-            <span className="text-[#D85A30]">real outcomes</span>
-          </h2>
-          <p className="text-[#666] text-sm max-w-sm mx-auto">
-            We partner with ambitious teams to build robust digital products.
+        <div className="mb-10 flex flex-col justify-between gap-6 lg:mb-14 lg:flex-row lg:items-start">
+          <div>
+            <span
+              className="text-[11px] uppercase tracking-[0.25em] font-semibold mb-3 block"
+              style={{ color: '#D85A30', ...helvetica }}
+            >
+              WHAT WE DO
+            </span>
+            <h2
+              className="text-3xl font-bold text-white md:text-4xl lg:text-5xl leading-tight"
+              style={helvetica}
+            >
+              Services built for<br />
+              <span style={{ color: '#D85A30' }}>real outcomes</span>
+            </h2>
+          </div>
+          <p
+            className="max-w-md text-sm leading-relaxed md:text-base lg:text-lg"
+            style={{ color: 'rgba(255,255,255,0.45)', ...helvetica }}
+          >
+            We partner with ambitious teams to design, build, and ship
+            digital products that scale. No fluff — just engineering that works.
           </p>
         </div>
 
-        {/* 3-column grid */}
-        <div className="relative z-10 flex-1 grid grid-cols-1 md:grid-cols-[1.4fr_220px_1.4fr] lg:grid-cols-[1.4fr_260px_1.4fr] px-3 md:px-4 pb-6 gap-3 min-h-0">
+        {/* Desktop accordion */}
+        <div className="hidden h-[520px] gap-2 lg:flex">
+          {services.map((svc, index) => {
+            const isActive = activeIndex === index;
+            return (
+              <motion.div
+                key={svc.id}
+                className="relative cursor-pointer overflow-hidden rounded-2xl"
+                animate={{ flex: isActive ? 2.5 : 1.2 }}
+                transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
+                onHoverStart={() => setActiveIndex(index)}
+                style={{
+                  border: isActive ? '1px solid rgba(216,90,48,0.45)' : '1px solid rgba(255,255,255,0.05)',
+                  minWidth: 0,
+                }}
+              >
+                <Image
+                  src={svc.imagePath}
+                  alt={svc.title}
+                  fill
+                  className="object-cover"
+                />
 
-          {/* Left column — cards 01, 03 + CTA */}
-          <div className="hidden md:flex flex-col justify-center py-4" style={{ gap: '40px' }}>
-            <div style={{ marginTop: '-12%' }}>
-              <ServiceCard service={services[0]} cardIndex={0} />
-            </div>
-            <div style={{ marginLeft: '14px' }}>
-              <ServiceCard service={services[2]} cardIndex={2} />
-            </div>
-          </div>
+                {/* Overlay */}
+                <motion.div
+                  className="absolute inset-0"
+                  animate={{
+                    background: isActive
+                      ? 'linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.25) 55%, transparent 100%)'
+                      : 'rgba(10,10,10,0.82)',
+                  }}
+                  transition={{ duration: 0.5 }}
+                />
 
-          {/* Centre — Three.js canvas */}
-          <div className="relative flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0">
-              <ServicesCanvas scrollRef={scrollPctRef} />
-            </div>
-          </div>
+                {/* Active content */}
+                <motion.div
+                  className="absolute inset-0 flex flex-col justify-end p-8"
+                  animate={{ opacity: isActive ? 1 : 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <span
+                    className="text-7xl font-bold"
+                    style={{ color: 'rgba(216,90,48,0.25)', ...helvetica }}
+                  >
+                    {svc.number}
+                  </span>
+                  <h3
+                    className="mt-2 text-2xl font-bold text-white"
+                    style={helvetica}
+                  >
+                    {svc.title}
+                  </h3>
+                  <p
+                    className="mt-2 max-w-xs text-sm"
+                    style={{ color: 'rgba(255,255,255,0.7)', ...helvetica }}
+                  >
+                    {svc.description}
+                  </p>
+                  <div className="mt-4">
+                    <span
+                      className="text-xs font-semibold uppercase tracking-widest"
+                      style={{ color: '#D85A30' }}
+                    >
+                      Learn more →
+                    </span>
+                  </div>
+                </motion.div>
 
-          {/* Right column — cards 02, 04 */}
-          <div className="hidden md:flex flex-col justify-center py-4" style={{ gap: '40px' }}>
-            <div style={{ marginTop: '12%', marginRight: '14px' }}>
-              <ServiceCard service={services[1]} cardIndex={1} />
-            </div>
-            <div>
-              <ServiceCard service={services[3]} cardIndex={3} />
-            </div>
-          </div>
+                {/* Collapsed label */}
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  animate={{ opacity: isActive ? 0 : 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div
+                    className="flex flex-col items-center gap-4"
+                    style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+                  >
+                    <span
+                      className="font-bold"
+                      style={{ fontSize: '2.2rem', color: 'rgba(216,90,48,0.55)', letterSpacing: '-0.02em', ...helvetica }}
+                    >
+                      {svc.number}
+                    </span>
+                    <span
+                      className="font-semibold tracking-wide text-white/80"
+                      style={{ fontSize: '0.9rem', ...helvetica }}
+                    >
+                      {svc.title}
+                    </span>
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Bottom CTA heading */}
-        <Link
-          href="#contact"
-          className="relative z-10 shrink-0 w-full text-center py-4 group"
-        >
-          <span className="font-heading text-3xl md:text-4xl lg:text-5xl font-black text-white/10 group-hover:text-[#D85A30] transition-colors duration-300 tracking-tight uppercase">
-            Start your project ↗
-          </span>
-        </Link>
+        {/* Mobile accordion */}
+        <div className="flex flex-col gap-3 lg:hidden">
+          {services.map((svc, index) => {
+            const isActive = activeIndex === index;
+            return (
+              <motion.div
+                key={svc.id}
+                className="relative overflow-hidden rounded-2xl"
+                animate={{ height: isActive ? 320 : 72 }}
+                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                onClick={() => setActiveIndex(index)}
+                style={{
+                  border: isActive ? '1px solid rgba(216,90,48,0.5)' : '1px solid rgba(255,255,255,0.06)',
+                }}
+              >
+                <Image src={svc.imagePath} alt={svc.title} fill className="object-cover" />
+                <motion.div
+                  className="absolute inset-0"
+                  animate={{ background: isActive ? 'rgba(10,10,10,0.75)' : 'rgba(10,10,10,0.8)' }}
+                />
+                <motion.div
+                  className="absolute inset-0 flex flex-col justify-end p-6"
+                  animate={{ opacity: isActive ? 1 : 0 }}
+                >
+                  <span className="text-4xl font-bold" style={{ color: 'rgba(216,90,48,0.25)', ...helvetica }}>{svc.number}</span>
+                  <h3 className="text-xl font-bold text-white mt-1" style={helvetica}>{svc.title}</h3>
+                  <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.65)', ...helvetica }}>{svc.description}</p>
+                </motion.div>
+                <motion.div
+                  className="absolute inset-0 flex items-center px-6 gap-4"
+                  animate={{ opacity: isActive ? 0 : 1 }}
+                >
+                  <span className="text-2xl font-bold" style={{ color: 'rgba(216,90,48,0.4)', ...helvetica }}>{svc.number}</span>
+                  <span className="text-base font-semibold text-white" style={helvetica}>{svc.title}</span>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
-  );
-}
-
-// ─── Card ─────────────────────────────────────────────────────────────────────
-function ServiceCard({
-  service,
-  cardIndex,
-}: {
-  service: typeof services[number];
-  cardIndex: number;
-}) {
-  const Icon = service.icon;
-
-  return (
-    <div
-      data-card={cardIndex}
-      className="group relative rounded-xl overflow-hidden cursor-default flex flex-col transition-all duration-300"
-      style={{
-        height:     '195px',
-        background: 'transparent',
-        willChange: 'transform, opacity',
-        border:     '1px solid transparent',
-      }}
-      onMouseEnter={e => (e.currentTarget.style.border = '1px solid rgba(216,90,48,0.7)')}
-      onMouseLeave={e => (e.currentTarget.style.border = '1px solid transparent')}
-    >
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ backgroundImage: `url(${service.img})` }}
-      />
-      <div className="absolute inset-0 bg-[#0A0A0A]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-      <div className="relative z-10 p-4 flex flex-col h-full">
-        {/* Number top-left */}
-        <span className="font-mono text-base font-semibold text-white/30">{service.num}</span>
-
-        {/* Big title at bottom */}
-        <div className="mt-auto">
-          <h3 className="font-heading font-black text-white/80 group-hover:text-white transition-colors duration-300 leading-none"
-            style={{ fontSize: 'clamp(1.3rem, 2.2vw, 1.8rem)' }}
-          >
-            {service.title}
-          </h3>
-          <p className="text-[#444] group-hover:text-[#666] text-xs mt-1 leading-relaxed line-clamp-1 transition-colors duration-300">
-            {service.desc}
-          </p>
-        </div>
-      </div>
-    </div>
   );
 }
