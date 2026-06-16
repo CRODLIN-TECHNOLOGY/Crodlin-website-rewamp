@@ -4,7 +4,7 @@ import { Briefcase, Terminal, Mail } from 'lucide-react';
 
 export default function FounderSection() {
   return (
-    <section id="about" className="bg-[#F5F5F5] py-24">
+    <section id="about" className="py-24" style={{ background: 'linear-gradient(to bottom, #0A0A0A 0%, #1E0B04 50%, #0A0A0A 100%)' }}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
         {/* Left Column */}
@@ -53,7 +53,7 @@ export default function FounderSection() {
             <span className="absolute -top-12 -left-6 md:-left-10 text-8xl leading-none text-[#D85A30] font-serif opacity-30 select-none">
               &ldquo;
             </span>
-            <div className="text-xl md:text-2xl text-[#0D0D0D] leading-relaxed font-light flex flex-col gap-6 relative z-10">
+            <div className="text-xl md:text-2xl text-white leading-relaxed font-light flex flex-col gap-6 relative z-10">
               <p>
                 I started Crodlin because I saw a gap — small businesses and startups needed the same quality of software that enterprises get, without the enterprise price tag or bureaucracy.
               </p>
@@ -64,8 +64,8 @@ export default function FounderSection() {
           </div>
 
           <div className="mt-12 flex flex-col">
-            <span className="font-serif italic text-3xl text-[#0D0D0D]">Fareed</span>
-            <span className="text-sm text-[#5A5A5A] mt-1">Founder &amp; Lead Engineer</span>
+            <span className="font-serif italic text-3xl text-white">Fareed</span>
+            <span className="text-sm text-white/50 mt-1">Founder &amp; Lead Engineer</span>
           </div>
 
           <Link

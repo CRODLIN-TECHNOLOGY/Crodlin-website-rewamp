@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 
-// SVG viewBox: 1200 × 680
 const PATH_D =
   'M -10,560 C 60,520 110,470 182,400 C 260,320 350,248 435,228 C 580,198 700,192 838,188 C 960,186 1030,310 1098,468 C 1140,570 1165,630 1210,690';
 
@@ -13,7 +13,7 @@ const STEPS = [
     desc: ['Tell us about your project', '— takes 2 minutes.'],
     cx: 182, cy: 400,
     labelX: 42,  labelY: 345,
-    descX:  28,  descY:  460,
+    descX:  28,  descY:  290,
     side: 'left',
   },
   {
@@ -39,16 +39,13 @@ const STEPS = [
     title: 'We build',
     desc: ['Weekly demos, Slack updates,', "and you're always in the loop."],
     cx: 1098, cy: 468,
-    labelX: 900, labelY: 558,
-    descX:  888, descY:  602,
+    labelX: 900, labelY: 500,
+    descX:  888, descY:  520,
     side: 'right',
   },
 ];
 
-// Each node's approximate progress along the path (0 → 1)
 const NODE_THRESHOLDS = [0.18, 0.38, 0.62, 0.84];
-
-// Logo size in SVG units
 const LOGO_SIZE = 30;
 
 export default function ProcessSection() {
@@ -85,177 +82,170 @@ export default function ProcessSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0A0A0A] relative overflow-hidden"
-      style={{ minHeight: '100vh' }}
+      className="relative overflow-hidden"
+      style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #0A0A0A 0%, #050505 100%)' }}
     >
       {/* Section header */}
-      <div className="relative z-10 pt-20 pb-4 px-6 md:px-12 max-w-7xl mx-auto w-full">
-        <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
-          HOW IT WORKS
-        </span>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-          Simple process,{' '}
-          <span className="text-[#D85A30]">serious results</span>
-        </h2>
+      <div className="relative z-10 pt-20 pb-4 px-6 md:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
+            HOW IT WORKS
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            Simple process,{' '}
+            <span className="text-[#D85A30]">serious results</span>
+          </h2>
+        </div>
       </div>
 
-      {/* SVG canvas */}
-      <div className="relative w-full" style={{ height: 'min(680px, 72vw)' }}>
-        <svg
-          viewBox="0 0 1200 680"
-          preserveAspectRatio="xMidYMid meet"
-          className="absolute inset-0 w-full h-full"
-          aria-hidden
-        >
-          <defs>
-            <filter id="ember-glow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-
-            {/* Sphere gradients */}
-            <radialGradient id="sphere-grad" cx="38%" cy="35%" r="65%">
-              <stop offset="0%"   stopColor="#D85A30" stopOpacity="0.9" />
-              <stop offset="45%"  stopColor="#8B2010" stopOpacity="0.7" />
-              <stop offset="100%" stopColor="#0A0A0A" stopOpacity="1"   />
-            </radialGradient>
-            <radialGradient id="sphere-rim" cx="50%" cy="50%" r="50%">
-              <stop offset="70%"  stopColor="transparent" />
-              <stop offset="100%" stopColor="#D85A30" stopOpacity="0.15" />
-            </radialGradient>
-
-            {/* Logo clip circles for each step */}
-            {STEPS.map((s) => (
-              <clipPath key={`clip-${s.num}`} id={`logo-clip-${s.num}`}>
-                <circle cx={s.cx} cy={s.cy} r={LOGO_SIZE / 2} />
-              </clipPath>
-            ))}
-          </defs>
-
-          {/* Central glowing sphere */}
-          <circle cx="616" cy="500" r="168" fill="url(#sphere-grad)" opacity="0.88" />
-          <circle cx="616" cy="500" r="168" fill="url(#sphere-rim)" />
-          <circle cx="616" cy="500" r="224" fill="none" stroke="#D85A30" strokeWidth="0.6" opacity="0.1" />
-          <circle cx="616" cy="500" r="270" fill="none" stroke="#D85A30" strokeWidth="0.3" opacity="0.06" />
-
-          {/* Ghost track */}
-          <path d={PATH_D} fill="none" stroke="#2A2A2A" strokeWidth="1.5" />
-
-          {/* Animated ember line */}
-          <path
-            ref={pathRef}
-            d={PATH_D}
-            fill="none"
-            stroke="#D85A30"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            filter="url(#ember-glow)"
-            style={{
-              strokeDasharray:  pathLen || 9999,
-              strokeDashoffset: dashOffset,
-              transition: 'stroke-dashoffset 0.04s linear',
-            }}
+      {/* ── MOBILE: vertical steps ── */}
+      <div className="md:hidden px-6 pt-10 pb-16 max-w-7xl mx-auto">
+        <div className="relative flex flex-col gap-0">
+          {/* Vertical line */}
+          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-[#2A2A2A]" />
+          {/* Animated fill */}
+          <div
+            className="absolute left-[19px] top-0 w-px bg-[#D85A30] transition-all duration-300"
+            style={{ height: `${drawProgress * 100}%`, boxShadow: '0 0 8px rgba(216,90,48,0.6)' }}
           />
 
-          {/* Step nodes */}
           {STEPS.map((step, idx) => {
-            const visible  = drawProgress >= NODE_THRESHOLDS[idx];
-            const isRight  = step.side === 'right';
-            const halfLogo = LOGO_SIZE / 2;
-
+            const visible = drawProgress >= NODE_THRESHOLDS[idx];
             return (
-              <g
-                key={step.num}
-                style={{
-                  opacity:    visible ? 1 : 0,
-                  transform:  visible ? 'scale(1)' : 'scale(0.6)',
-                  transformOrigin: `${step.cx}px ${step.cy}px`,
-                  transition: 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1)',
-                }}
-              >
-                {/* Outer ember ring */}
-                <circle
-                  cx={step.cx} cy={step.cy} r={halfLogo + 8}
-                  fill="none"
-                  stroke="#D85A30"
-                  strokeWidth="1"
-                  opacity="0.4"
-                  filter="url(#ember-glow)"
-                />
-                {/* Dark backing circle */}
-                <circle
-                  cx={step.cx} cy={step.cy} r={halfLogo + 2}
-                  fill="#0A0A0A"
-                  stroke="#D85A30"
-                  strokeWidth="1.2"
-                />
-                {/* Crodlin logo via SVG <image> */}
-                <image
-                  href="/logo_without_name-removebg-preview.png"
-                  x={step.cx - halfLogo}
-                  y={step.cy - halfLogo}
-                  width={LOGO_SIZE}
-                  height={LOGO_SIZE}
-                  preserveAspectRatio="xMidYMid meet"
-                  style={{ filter: 'brightness(0) invert(1)' }}
-                  clipPath={`url(#logo-clip-${step.num})`}
-                />
-
-                {/* Step number */}
-                <text
-                  x={step.cx + (isRight ? halfLogo + 12 : -(halfLogo + 12))}
-                  y={step.cy + 5}
-                  fontFamily="var(--font-caveat, Caveat, cursive)"
-                  fontSize="15"
-                  fontWeight="700"
-                  fill="#D85A30"
-                  textAnchor={isRight ? 'start' : 'end'}
-                  opacity="0.7"
+              <div key={step.num} className="relative flex gap-6 pb-10">
+                {/* Node */}
+                <div
+                  className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all duration-500"
+                  style={{
+                    background: visible ? '#0A0A0A' : '#111',
+                    border: `1.5px solid ${visible ? '#D85A30' : '#2A2A2A'}`,
+                    boxShadow: visible ? '0 0 12px rgba(216,90,48,0.4)' : 'none',
+                    opacity: visible ? 1 : 0.4,
+                  }}
                 >
-                  {step.num}
-                </text>
+                  <Image
+                    src="/logo_without_name-removebg-preview.png"
+                    alt="Crodlin"
+                    width={20}
+                    height={20}
+                    className="object-contain brightness-0 invert"
+                  />
+                </div>
 
-                {/* Handwritten title */}
-                <text
-                  x={step.labelX}
-                  y={step.labelY}
-                  fontFamily="var(--font-caveat, Caveat, cursive)"
-                  fontSize="27"
-                  fontWeight="600"
-                  fill="#D85A30"
-                  textAnchor="start"
+                {/* Content */}
+                <div
+                  className="flex flex-col gap-1 pt-1 transition-all duration-500"
+                  style={{ opacity: visible ? 1 : 0.3 }}
                 >
-                  {step.title}
-                </text>
-
-                {/* Description */}
-                {step.desc.map((line, li) => (
-                  <text
-                    key={li}
-                    x={step.descX}
-                    y={step.descY + li * 18}
-                    fontFamily="var(--font-geist-sans, sans-serif)"
-                    fontSize="13"
-                    fill="#777"
-                    textAnchor="start"
-                  >
-                    {line}
-                  </text>
-                ))}
-              </g>
+                  <span className="text-[10px] uppercase tracking-widest font-semibold text-[#D85A30]">{step.num}</span>
+                  <h3 className="text-white font-semibold text-lg">{step.title}</h3>
+                  <p className="text-[#666] text-sm leading-relaxed">{step.desc.join(' ')}</p>
+                </div>
+              </div>
             );
           })}
-        </svg>
-      </div>
+        </div>
 
-      {/* Footer note */}
-      <div className="relative z-10 text-center pb-16">
-        <p className="text-[#D85A30] text-sm font-medium">
+        <p className="text-[#D85A30] text-sm font-medium text-center mt-4">
           Most projects start within 7 days of signing.
         </p>
+      </div>
+
+      {/* ── DESKTOP: SVG orbital ── */}
+      <div className="hidden md:block">
+        <div className="relative w-screen left-1/2 -translate-x-1/2" style={{ height: 'min(680px, 72vw)' }}>
+          <svg
+            viewBox="0 0 1200 680"
+            preserveAspectRatio="xMidYMid slice"
+            className="absolute inset-0 w-full h-full"
+            aria-hidden
+          >
+            <defs>
+              <filter id="ember-glow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <radialGradient id="sphere-grad" cx="38%" cy="35%" r="65%">
+                <stop offset="0%"   stopColor="#D85A30" stopOpacity="0.9" />
+                <stop offset="45%"  stopColor="#8B2010" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#0A0A0A" stopOpacity="1"   />
+              </radialGradient>
+              <radialGradient id="sphere-rim" cx="50%" cy="50%" r="50%">
+                <stop offset="70%"  stopColor="transparent" />
+                <stop offset="100%" stopColor="#D85A30" stopOpacity="0.15" />
+              </radialGradient>
+              {STEPS.map((s) => (
+                <clipPath key={`clip-${s.num}`} id={`logo-clip-${s.num}`}>
+                  <circle cx={s.cx} cy={s.cy} r={LOGO_SIZE / 2} />
+                </clipPath>
+              ))}
+            </defs>
+
+            <circle cx="616" cy="420" r="110" fill="url(#sphere-grad)" opacity="0.88" />
+            <circle cx="616" cy="420" r="110" fill="url(#sphere-rim)" />
+            <circle cx="616" cy="420" r="148" fill="none" stroke="#D85A30" strokeWidth="0.6" opacity="0.1" />
+            <circle cx="616" cy="420" r="184" fill="none" stroke="#D85A30" strokeWidth="0.3" opacity="0.06" />
+
+            <path d={PATH_D} fill="none" stroke="#2A2A2A" strokeWidth="1.5" />
+            <path
+              ref={pathRef}
+              d={PATH_D}
+              fill="none"
+              stroke="#D85A30"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              filter="url(#ember-glow)"
+              style={{
+                strokeDasharray:  pathLen || 9999,
+                strokeDashoffset: dashOffset,
+                transition: 'stroke-dashoffset 0.04s linear',
+              }}
+            />
+
+            {STEPS.map((step, idx) => {
+              const visible  = drawProgress >= NODE_THRESHOLDS[idx];
+              const isRight  = step.side === 'right';
+              const halfLogo = LOGO_SIZE / 2;
+
+              return (
+                <g
+                  key={step.num}
+                  style={{
+                    opacity:    visible ? 1 : 0,
+                    transform:  visible ? 'scale(1)' : 'scale(0.6)',
+                    transformOrigin: `${step.cx}px ${step.cy}px`,
+                    transition: 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1)',
+                  }}
+                >
+                  <circle cx={step.cx} cy={step.cy} r={halfLogo + 8} fill="none" stroke="#D85A30" strokeWidth="1" opacity="0.4" filter="url(#ember-glow)" />
+                  <circle cx={step.cx} cy={step.cy} r={halfLogo + 2} fill="#0A0A0A" stroke="#D85A30" strokeWidth="1.2" />
+                  <image
+                    href="/logo_without_name-removebg-preview.png"
+                    x={step.cx - halfLogo} y={step.cy - halfLogo}
+                    width={LOGO_SIZE} height={LOGO_SIZE}
+                    preserveAspectRatio="xMidYMid slice"
+                    style={{ filter: 'brightness(0) invert(1)' }}
+                    clipPath={`url(#logo-clip-${step.num})`}
+                  />
+                  <text x={step.cx + (isRight ? halfLogo + 12 : -(halfLogo + 12))} y={step.cy + 5} fontFamily="var(--font-caveat, Caveat, cursive)" fontSize="15" fontWeight="700" fill="#D85A30" textAnchor={isRight ? 'start' : 'end'} opacity="0.7">{step.num}</text>
+                  <text x={step.labelX} y={step.labelY} fontFamily="var(--font-caveat, Caveat, cursive)" fontSize="27" fontWeight="600" fill="#D85A30" textAnchor="start">{step.title}</text>
+                  {step.desc.map((line, li) => (
+                    <text key={li} x={step.descX} y={step.descY + li * 18} fontFamily="var(--font-geist-sans, sans-serif)" fontSize="13" fill="#777" textAnchor="start">{line}</text>
+                  ))}
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+
+        <div className="relative z-10 text-center pb-16">
+          <p className="text-[#D85A30] text-sm font-medium">
+            Most projects start within 7 days of signing.
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -2,130 +2,191 @@
 
 import React from 'react';
 
+const inputStyle: React.CSSProperties = {
+  background: 'rgba(255,255,255,0.05)',
+  border: '1px solid rgba(255,255,255,0.1)',
+  borderRadius: '8px',
+  padding: '10px 14px',
+  color: '#fff',
+  fontSize: '14px',
+  outline: 'none',
+  width: '100%',
+};
+
 export default function CTASection() {
   return (
     <section
       id="contact"
-      className="relative py-28 overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, #0D0D0D 0%, #1A0800 50%, #0D0D0D 100%)',
-      }}
+      className="relative py-24 overflow-hidden"
+      style={{ background: '#030303' }}
     >
-      {/* Ambient ember blobs */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D85A30]/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#D85A30]/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* Ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#D85A30]/8 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Floating glass badges */}
-      <div className="absolute top-16 left-10 md:left-24 bg-white/5 backdrop-blur-xl border border-white/10 text-white text-sm font-medium px-4 py-2 rounded-xl shadow-lg transform -rotate-6 animate-[bounce_4s_infinite_alternate]">
-        ✓ Replied in &lt; 2 hours
-      </div>
-      <div className="absolute bottom-20 left-10 md:left-32 bg-white/5 backdrop-blur-xl border border-white/10 text-white text-sm font-medium px-4 py-2 rounded-xl shadow-lg transform rotate-6 animate-[bounce_5s_infinite_alternate]">
-        📅 Free 30-min slot
-      </div>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-
-        {/* Left: Text */}
-        <div className="reveal text-left">
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-6">
-            Ready to build<br />
-            something that<br />
-            <span className="text-[#D85A30]">matters?</span>
+        {/* Heading — centered */}
+        <div className="text-center mb-14">
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
+            GET IN TOUCH
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight mb-4">
+            Contact our team
           </h2>
-
-          <p className="text-white/60 text-lg max-w-lg leading-relaxed font-light mb-8">
-            Let&apos;s discuss your project. No sales pitch — just an honest
-            conversation with our technical experts.
-          </p>
-
-          <p className="text-white/50 text-sm font-medium tracking-wide flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Currently accepting new projects
+          <p className="text-sm md:text-base text-white/45 max-w-xl mx-auto leading-relaxed">
+            Got questions about our services or ready to start a project? We&apos;re here to help.
+            Chat with our team 24/7 and get started in less than 5 minutes.
           </p>
         </div>
 
-        {/* Right: Glassmorphism form card */}
-        <div className="reveal reveal-delay-2 relative rounded-[2rem] p-8 md:p-10 overflow-hidden"
-          style={{
-            background: 'rgba(255, 255, 255, 0.04)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            border: '1px solid rgba(255,255,255,0.08)',
-            boxShadow: '0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
-          }}
-        >
-          {/* Inner highlight edge */}
+        {/* Two-column */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-start">
+
+          {/* Left: Form */}
           <div
-            className="absolute inset-0 rounded-[2rem] pointer-events-none"
+            className="rounded-2xl p-8 md:p-10"
             style={{
-              background: 'linear-gradient(135deg, rgba(216,90,48,0.08) 0%, transparent 60%)',
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(255,255,255,0.07)',
             }}
-          />
-
-          <h3 className="text-2xl font-bold text-white mb-6 relative z-10">Get in touch</h3>
-
-          <form className="flex flex-col gap-5 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-semibold text-white/40 uppercase tracking-wider">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="John"
-                  className="glass-input"
-                />
+                <label className="text-xs font-medium text-white/40 uppercase tracking-wider">First name</label>
+                <input type="text" placeholder="First name" style={inputStyle} className="placeholder-white/20 focus:border-[#D85A30]/50 transition-colors" />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-semibold text-white/40 uppercase tracking-wider">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Doe"
-                  className="glass-input"
-                />
+                <label className="text-xs font-medium text-white/40 uppercase tracking-wider">Last name</label>
+                <input type="text" placeholder="Last name" style={inputStyle} className="placeholder-white/20 focus:border-[#D85A30]/50 transition-colors" />
               </div>
             </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-semibold text-white/40 uppercase tracking-wider">
-                Email Address
-              </label>
-              <input
-                type="email"
-                placeholder="john@company.com"
-                className="glass-input"
-              />
+            <div className="flex flex-col gap-2 mb-5">
+              <label className="text-xs font-medium text-white/40 uppercase tracking-wider">Email</label>
+              <input type="email" placeholder="you@company.com" style={inputStyle} className="placeholder-white/20 focus:border-[#D85A30]/50 transition-colors" />
             </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-semibold text-white/40 uppercase tracking-wider">
-                Project Details
-              </label>
+            <div className="flex flex-col gap-2 mb-5">
+              <label className="text-xs font-medium text-white/40 uppercase tracking-wider">Phone number</label>
+              <div className="flex gap-2">
+                <select
+                  style={{ ...inputStyle, width: 'auto', paddingRight: '28px' }}
+                  className="shrink-0"
+                >
+                  <option value="IN">IN</option>
+                  <option value="US">US</option>
+                  <option value="UK">UK</option>
+                  <option value="AE">AE</option>
+                </select>
+                <input type="tel" placeholder="+91 00000 00000" style={inputStyle} className="placeholder-white/20 focus:border-[#D85A30]/50 transition-colors" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 mb-6">
+              <label className="text-xs font-medium text-white/40 uppercase tracking-wider">Message</label>
               <textarea
-                placeholder="Tell us about your goals, timeline, and budget..."
+                placeholder="Leave us a message..."
                 rows={4}
-                className="glass-input resize-none"
+                style={{ ...inputStyle, resize: 'none' }}
+                className="placeholder-white/20 focus:border-[#D85A30]/50 transition-colors"
               />
+            </div>
+
+            {/* Services checkboxes */}
+            <div className="mb-8">
+              <label className="text-xs font-medium text-white/40 uppercase tracking-wider block mb-3">Services</label>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {['Software Development', 'AI & Automation', 'Mobile Apps', 'IT Consultancy', 'UI/UX Design', 'Other'].map((s) => (
+                  <label key={s} className="flex items-center gap-2 cursor-pointer group">
+                    <div
+                      className="w-4 h-4 rounded border shrink-0 flex items-center justify-center transition-colors group-hover:border-[#D85A30]/60"
+                      style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.03)' }}
+                    />
+                    <span className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{s}</span>
+                  </label>
+                ))}
+              </div>
             </div>
 
             <button
               type="button"
-              className="relative mt-2 py-4 rounded-xl font-bold text-white text-base overflow-hidden group transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
-              style={{
-                background: 'rgba(216,90,48,0.9)',
-                border: '1px solid rgba(216,90,48,0.5)',
-                boxShadow: '0 8px 32px rgba(216,90,48,0.25)',
-              }}
+              className="w-full py-3.5 rounded-full font-semibold text-[#D85A30] text-sm transition-all duration-300 hover:bg-[#D85A30] hover:text-white border border-[#D85A30]"
             >
-              <span className="relative z-10">Send Message →</span>
-              {/* hover glow sweep */}
-              <span className="absolute inset-0 bg-gradient-to-r from-[#D85A30] to-[#FF7A50] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              Send message ↗
             </button>
-          </form>
-        </div>
+          </div>
 
+          {/* Right: Contact info */}
+          <div className="flex flex-col gap-6">
+
+            {/* Chat */}
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+            >
+              <p className="text-white font-semibold text-sm mb-1">Chat with us</p>
+              <p className="text-white/40 text-xs mb-4 leading-relaxed">Speak to our friendly team via live chat.</p>
+              <div className="flex flex-col gap-3">
+                <a href="#" className="flex items-center gap-2 text-sm text-white/60 hover:text-[#D85A30] transition-colors">
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  Start a live chat
+                </a>
+                <a href="mailto:hello@crodlin.com" className="flex items-center gap-2 text-sm text-white/60 hover:text-[#D85A30] transition-colors">
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  Shoot us an email
+                </a>
+                <a href="#" className="flex items-center gap-2 text-sm text-white/60 hover:text-[#D85A30] transition-colors">
+                  <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                  Message us on X
+                </a>
+              </div>
+            </div>
+
+            {/* Call */}
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+            >
+              <p className="text-white font-semibold text-sm mb-1">Call us</p>
+              <p className="text-white/40 text-xs mb-4 leading-relaxed">Mon–Fri from 9am to 6pm IST.</p>
+              <a href="tel:+910000000000" className="flex items-center gap-2 text-sm text-white/60 hover:text-[#D85A30] transition-colors">
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                +91 (000) 000-0000
+              </a>
+            </div>
+
+            {/* Visit */}
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+            >
+              <p className="text-white font-semibold text-sm mb-1">Visit us</p>
+              <p className="text-white/40 text-xs mb-4 leading-relaxed">Chat with us in person at our office.</p>
+              <a href="#" className="flex items-center gap-2 text-sm text-white/60 hover:text-[#D85A30] transition-colors">
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Mumbai, Maharashtra, India
+              </a>
+            </div>
+
+            {/* Status pill */}
+            <div className="flex items-center gap-2 px-4 py-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shrink-0" />
+              <span className="text-xs text-white/50">Currently accepting new projects</span>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -15,14 +15,6 @@ export default function HeroSection() {
         {/* LEFT — text */}
         <div className="relative z-10 flex flex-col justify-center px-6 md:px-12 py-8 lg:w-[55%] shrink-0">
 
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-6">
-            <span className="inline-flex items-center gap-2 border border-[#D85A30]/40 text-[#D85A30] bg-[#D85A30]/5 text-[10px] uppercase tracking-[0.2em] font-semibold px-4 py-1.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D85A30] animate-pulse" />
-              SOFTWARE · AI · MOBILE
-            </span>
-          </div>
-
           {/* Headline */}
           <h1
             className="font-heading font-black leading-[0.92] tracking-[-0.03em] text-white"
@@ -45,7 +37,7 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-7">
             <Link
               href="#contact"
-              className="bg-[#D85A30] hover:bg-[#BF4D25] text-white px-7 py-3 rounded-full font-semibold transition-colors text-sm tracking-wide"
+              className="border border-[#D85A30] text-[#D85A30] hover:bg-[#D85A30] hover:text-white px-7 py-3 rounded-full font-semibold transition-all text-sm tracking-wide"
             >
               Get a free consultation
             </Link>
@@ -99,6 +91,13 @@ export default function HeroSection() {
 
           {/* Dark tint */}
           <div className="absolute inset-0 bg-[#0D0D0D]/30" />
+
+          {/* Placeholder grid shown when no video */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-[0.04]">
+            <div className="w-full h-full" style={{
+              backgroundImage: 'repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 1px, transparent 60px), repeating-linear-gradient(90deg, #fff 0px, #fff 1px, transparent 1px, transparent 60px)'
+            }} />
+          </div>
         </div>
 
       </div>

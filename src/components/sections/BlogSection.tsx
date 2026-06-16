@@ -72,9 +72,12 @@ export default function BlogSection() {
         {/* Side-by-side: heading left, cards right */}
         <div className="flex gap-0 items-stretch w-full">
 
-          {/* LEFT — heading */}
-          <div className="hidden md:flex flex-col justify-between shrink-0 py-2 pl-6 md:pl-12 pr-6"
-            style={{ width: '380px' }}
+          {/* LEFT — heading aligned to same left edge as max-w-7xl sections */}
+          <div className="hidden md:flex flex-col justify-between shrink-0 py-2 pr-8"
+            style={{
+              paddingLeft: 'max(calc((100vw - 1280px) / 2 + 48px), 48px)',
+              width: 'clamp(300px, calc((100vw - 1280px) / 2 + 48px + 280px), 460px)',
+            }}
           >
             <div>
               <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
@@ -82,7 +85,7 @@ export default function BlogSection() {
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
                 The Crodlin<br />
-                <span className="text-[#D85A30]">Journal</span>
+                <span style={{ color: '#D85A30' }}>Journal</span>
               </h2>
               <p className="text-[#555] text-sm mt-4 leading-relaxed">
                 Discover our latest thoughts, ideas and innovations.

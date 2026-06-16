@@ -60,7 +60,7 @@ export default function ServicesSection() {
     <section
       id="services"
       className="py-16 lg:py-24"
-      style={{ background: '#0A0A0A', ...helvetica }}
+      style={{ background: 'linear-gradient(to bottom, #3D1508 0%, #0A0A0A 100%)', ...helvetica }}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12">
 
