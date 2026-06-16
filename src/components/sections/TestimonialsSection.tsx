@@ -196,8 +196,8 @@ export default function TestimonialsSection() {
       </div>
 
       {/* Marquee */}
-      <div className="mt-16 border-t border-[#1A1A1A] overflow-hidden">
-        <div className="flex items-center border-b border-[#1A1A1A]">
+      <div className="mt-16 overflow-hidden">
+        <div className="flex items-center">
           <div className="shrink-0 px-8 py-5 border-r border-[#1A1A1A]">
             <span className="text-[10px] uppercase tracking-[0.2em] text-[#444] font-semibold whitespace-nowrap">Trusted by</span>
           </div>

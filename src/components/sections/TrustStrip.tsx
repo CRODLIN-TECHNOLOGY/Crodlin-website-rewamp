@@ -17,7 +17,7 @@ export default function TrustStrip() {
     <section className="bg-[#0D0D0D] overflow-hidden">
 
       {/* Ruled marquee bar — full width */}
-      <div className="border-t border-b border-[#1A1A1A]">
+      <div>
         <div className="flex items-center">
 
           {/* Label */}
