@@ -89,7 +89,7 @@ export default function ProcessSection() {
       style={{ minHeight: '100vh' }}
     >
       {/* Section header */}
-      <div className="relative z-10 pt-20 pb-4 px-6 max-w-7xl mx-auto w-full">
+      <div className="relative z-10 pt-20 pb-4 px-6 md:px-12 max-w-7xl mx-auto w-full">
         <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
           HOW IT WORKS
         </span>

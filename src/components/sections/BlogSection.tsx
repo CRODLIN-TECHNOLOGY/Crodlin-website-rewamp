@@ -73,14 +73,14 @@ export default function BlogSection() {
         <div className="flex gap-0 items-stretch w-full">
 
           {/* LEFT — heading */}
-          <div className="hidden md:flex flex-col justify-between shrink-0 py-2"
-            style={{ width: '380px', paddingLeft: '48px', paddingRight: '24px' }}
+          <div className="hidden md:flex flex-col justify-between shrink-0 py-2 pl-6 md:pl-12 pr-6"
+            style={{ width: '380px' }}
           >
             <div>
-              <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
+              <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
                 INSIGHTS
               </span>
-              <h2 className="font-heading text-4xl lg:text-5xl font-black text-white leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
                 The Crodlin<br />
                 <span className="text-[#D85A30]">Journal</span>
               </h2>

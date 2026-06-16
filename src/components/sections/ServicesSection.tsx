@@ -62,7 +62,7 @@ export default function ServicesSection() {
       className="py-16 lg:py-24"
       style={{ background: '#0A0A0A', ...helvetica }}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
 
         {/* Header */}
         <div className="mb-10 flex flex-col justify-between gap-6 lg:mb-14 lg:flex-row lg:items-start">

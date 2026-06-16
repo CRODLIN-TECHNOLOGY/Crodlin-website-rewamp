@@ -13,7 +13,7 @@ export default function HeroSection() {
       <div className="h-full flex flex-col lg:flex-row" style={{ paddingTop: '72px' }}>
 
         {/* LEFT — text */}
-        <div className="relative z-10 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-8 lg:w-[55%] shrink-0">
+        <div className="relative z-10 flex flex-col justify-center px-6 md:px-12 py-8 lg:w-[55%] shrink-0">
 
           {/* Eyebrow */}
           <div className="flex items-center gap-3 mb-6">
