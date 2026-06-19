@@ -102,7 +102,7 @@ export default function BlogSection() {
               </button>
               <button
                 onClick={() => scroll('right')}
-                className="w-12 h-12 rounded-full bg-[#D85A30] flex items-center justify-center text-white hover:bg-[#c04d26] transition-all duration-200"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-[#D85A30] hover:text-[#D85A30] transition-all duration-200"
               >
                 →
               </button>
@@ -186,10 +186,12 @@ function BlogCard({
       {/* BOTTOM — image fills remaining space */}
       <div className="relative flex-1 overflow-hidden mx-4 mb-4 rounded-xl">
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${article.img})`,
             transform: hovered ? 'scale(1.06)' : 'scale(1)',
+            filter: hovered ? 'grayscale(0)' : 'grayscale(1)',
+            transition: 'transform 0.7s ease, filter 0.5s ease',
           }}
         />
         {/* Read More overlay on hover */}

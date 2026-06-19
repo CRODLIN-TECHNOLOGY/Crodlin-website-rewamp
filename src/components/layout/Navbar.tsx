@@ -91,7 +91,7 @@ export default function Navbar() {
                 </div>
                 <Link
                   href="#contact"
-                  className="border border-[#D85A30] bg-[#D85A30] text-white px-5 py-3 rounded-full text-center text-sm font-semibold mx-auto w-full max-w-[200px]"
+                  className="border border-[#D85A30] text-[#D85A30] hover:bg-[#D85A30] hover:text-white px-5 py-3 rounded-full text-center text-sm font-semibold mx-auto w-full max-w-[200px] transition-all duration-300"
                 >
                   Book a call ↗
                 </Link>

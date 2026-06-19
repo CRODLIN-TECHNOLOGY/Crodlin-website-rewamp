@@ -23,7 +23,7 @@ export default function HomePage() {
         <ProcessSection />
         <PortfolioSection />
         <TestimonialsSection />
-        <FounderSection />
+        {/* <FounderSection /> */}
         <BlogSection />
         <CTASection />
       </main>
