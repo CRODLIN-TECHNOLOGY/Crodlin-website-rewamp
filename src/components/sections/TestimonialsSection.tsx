@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MicOff, Users, Maximize2, UserCircle } from 'lucide-react';
+import { MicOff, UserCircle } from 'lucide-react';
 
 const testimonials = [
   {
@@ -55,22 +55,16 @@ export default function TestimonialsSection() {
 
   return (
     <section className="py-20 md:py-28 overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0A0A0A 0%, #1A1A1A 45%, #0A0A0A 100%)' }}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="px-6">
 
         {/* Header */}
-        <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
-              CLIENT VOICES
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
-              Trusted by ambitious<br />
-              <span className="text-[#D85A30]">teams worldwide</span>
-            </h2>
-          </div>
-          <p className="max-w-xs text-sm md:text-base lg:text-lg leading-relaxed md:text-right" style={{ color: 'rgba(255,255,255,0.45)' }}>
-            From startups to scaling enterprises — here's what our clients say about working with Crodlin.
-          </p>
+        <div className="mb-12 flex flex-col items-center text-center gap-3">
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
+            CLIENT VOICES
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+            Trusted by ambitious <span className="text-[#D85A30]">teams worldwide</span>
+          </h2>
         </div>
 
         {/* Video call UI */}
@@ -78,21 +72,6 @@ export default function TestimonialsSection() {
           className="rounded-2xl overflow-hidden"
           style={{ background: '#111', border: '1px solid rgba(255,255,255,0.07)' }}
         >
-          {/* Top bar */}
-          <div
-            className="flex items-center justify-between px-5 py-3"
-            style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', background: 'rgba(255,255,255,0.03)' }}
-          >
-            <div>
-              <p className="text-white text-sm font-semibold">Why Crodlin — Client Stories</p>
-              <p className="text-[#555] text-xs">crodlin.com · 5+ clients</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Maximize2 className="w-4 h-4 text-[#555]" />
-              <Users className="w-4 h-4 text-[#555]" />
-            </div>
-          </div>
-
           {/* Main layout */}
           <div className="flex flex-col lg:flex-row" style={{ minHeight: '520px' }}>
 

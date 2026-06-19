@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Syne, Caveat } from 'next/font/google'
+import localFont from 'next/font/local'
 import { ThemeProvider } from '@/components/common/ThemeProvider'
 import ScrollRevealInit from '@/components/common/ScrollRevealInit'
 import { Toaster } from '@/components/ui/sonner'
@@ -29,6 +30,15 @@ const caveat = Caveat({
   weight: ['400', '600', '700'],
 })
 
+const rifton = localFont({
+  src: [
+    { path: '../../rifton-font/rifton-regular.otf', weight: '400', style: 'normal' },
+    { path: '../../rifton-font/rifton-italic.otf',  weight: '400', style: 'italic' },
+  ],
+  variable: '--font-rifton',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: { default: siteConfig.name, template: `%s | ${siteConfig.name}` },
@@ -48,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${caveat.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${caveat.variable} ${rifton.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
           <ScrollRevealInit />

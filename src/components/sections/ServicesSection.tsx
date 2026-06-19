@@ -1,228 +1,168 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { Code2, Lightbulb, Cpu, Smartphone, Cloud, Palette } from 'lucide-react';
 
 const services = [
   {
     id: 1,
-    number: '01',
     title: 'Software Development',
-    description: 'Custom web apps, SaaS platforms, and dashboards engineered to scale with your business.',
-    imagePath: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop',
+    description: 'Custom web apps, SaaS platforms, and dashboards engineered to scale with your business from day one.',
+    icon: Code2,
+    audience: 'Startups',
   },
   {
     id: 2,
-    number: '02',
     title: 'IT Consultancy',
     description: 'Strategic tech roadmaps, architecture reviews, and expert guidance for your digital transformation.',
-    imagePath: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop',
+    icon: Lightbulb,
+    audience: 'Enterprises',
   },
   {
     id: 3,
-    number: '03',
     title: 'AI Solutions',
     description: 'LLM pipelines, intelligent automation, and data extraction systems that drive real outcomes.',
-    imagePath: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop',
+    icon: Cpu,
+    audience: 'Tech Leaders',
   },
   {
     id: 4,
-    number: '04',
     title: 'Mobile Apps',
-    description: 'Cross-platform iOS and Android apps that feel truly native and perform flawlessly.',
-    imagePath: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop',
+    description: 'Cross-platform iOS and Android apps that feel truly native and perform flawlessly under load.',
+    icon: Smartphone,
+    audience: 'Product Teams',
   },
   {
     id: 5,
-    number: '05',
     title: 'Cloud & DevOps',
     description: 'Infrastructure that scales effortlessly — CI/CD pipelines, containerisation, and 99.9% uptime.',
-    imagePath: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop',
+    icon: Cloud,
+    audience: 'Scale-ups',
   },
   {
     id: 6,
-    number: '06',
     title: 'UI / UX Design',
     description: 'Beautiful, conversion-focused interfaces built for real users — not just for screenshots.',
-    imagePath: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop',
+    icon: Palette,
+    audience: 'Founders',
   },
 ];
 
-const helvetica: React.CSSProperties = {
-  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-};
+const cyclingWords = [
+  { word: 'Startups',     color: '#D85A30' },
+  { word: 'Enterprises',  color: '#E07B55' },
+  { word: 'Tech Leaders', color: '#C44820' },
+  { word: 'Product Teams',color: '#D85A30' },
+  { word: 'Scale-ups',    color: '#E07B55' },
+  { word: 'Founders',     color: '#C44820' },
+];
 
 export default function ServicesSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [visible, setVisible]     = useState(true);
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setWordIndex(i => (i + 1) % cyclingWords.length);
+        setVisible(true);
+      }, 350);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
+
+  const activeWord  = cyclingWords[wordIndex];
+  const activeColor = activeWord.color;
 
   return (
     <section
       id="services"
       className="py-16 lg:py-24"
-      style={{ background: 'linear-gradient(to bottom, #3D1508 0%, #0A0A0A 100%)', ...helvetica }}
+      style={{ background: 'linear-gradient(to bottom, #3D1508 0%, #0A0A0A 100%)' }}
     >
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
+      <div className="px-6">
 
         {/* Header */}
-        <div className="mb-10 flex flex-col justify-between gap-6 lg:mb-14 lg:flex-row lg:items-start">
-          <div>
+        <div className="mb-14 flex flex-col items-center text-center gap-3">
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
+            WHAT WE DO
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+            Services built for{' '}
             <span
-              className="text-[11px] uppercase tracking-[0.25em] font-semibold mb-3 block"
-              style={{ color: '#D85A30', ...helvetica }}
+              style={{
+                color: activeColor,
+                display: 'inline-block',
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'translateY(0)' : 'translateY(12px)',
+                transition: 'opacity 0.35s ease, transform 0.35s ease, color 0.2s ease',
+              }}
             >
-              WHAT WE DO
+              {activeWord.word}
             </span>
-            <h2
-              className="text-3xl font-bold text-white md:text-4xl lg:text-5xl leading-tight"
-              style={helvetica}
-            >
-              Services built for<br />
-              <span style={{ color: '#D85A30' }}>real outcomes</span>
-            </h2>
-          </div>
-          <p
-            className="max-w-md text-sm leading-relaxed md:text-base lg:text-lg"
-            style={{ color: 'rgba(255,255,255,0.45)', ...helvetica }}
-          >
-            We partner with ambitious teams to design, build, and ship
-            digital products that scale. No fluff — just engineering that works.
-          </p>
+          </h2>
         </div>
 
-        {/* Desktop accordion */}
-        <div className="hidden h-[520px] gap-2 lg:flex">
-          {services.map((svc, index) => {
-            const isActive = activeIndex === index;
+        {/* 3×2 Grid */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+        >
+          {services.map((svc, idx) => {
+            const Icon      = svc.icon;
+            const isHovered = hoveredId === svc.id;
+            const col       = idx % 3;
+            const row       = Math.floor(idx / 3);
+
             return (
-              <motion.div
+              <div
                 key={svc.id}
-                className="relative cursor-pointer overflow-hidden rounded-2xl"
-                animate={{ flex: isActive ? 2.5 : 1.2 }}
-                transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
-                onHoverStart={() => setActiveIndex(index)}
+                onMouseEnter={() => setHoveredId(svc.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className="relative flex flex-col justify-between p-8 cursor-default transition-all duration-300"
                 style={{
-                  border: isActive ? '1px solid rgba(216,90,48,0.45)' : '1px solid rgba(255,255,255,0.05)',
-                  minWidth: 0,
+                  minHeight: '220px',
+                  borderRight:  col < 2 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+                  borderBottom: row < 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+                  background: isHovered ? 'rgba(255,255,255,0.03)' : 'transparent',
                 }}
               >
-                <Image
-                  src={svc.imagePath}
-                  alt={svc.title}
-                  fill
-                  className="object-cover"
-                />
-
-                {/* Overlay */}
-                <motion.div
-                  className="absolute inset-0"
-                  animate={{
-                    background: isActive
-                      ? 'linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.25) 55%, transparent 100%)'
-                      : 'rgba(10,10,10,0.82)',
-                  }}
-                  transition={{ duration: 0.5 }}
-                />
-
-                {/* Active content */}
-                <motion.div
-                  className="absolute inset-0 flex flex-col justify-end p-8"
-                  animate={{ opacity: isActive ? 1 : 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <span
-                    className="text-7xl font-bold"
-                    style={{ color: 'rgba(216,90,48,0.25)', ...helvetica }}
-                  >
-                    {svc.number}
-                  </span>
-                  <h3
-                    className="mt-2 text-2xl font-bold text-white"
-                    style={helvetica}
-                  >
-                    {svc.title}
-                  </h3>
-                  <p
-                    className="mt-2 max-w-xs text-sm"
-                    style={{ color: 'rgba(255,255,255,0.7)', ...helvetica }}
-                  >
+                {/* Top: title + desc */}
+                <div>
+                  <p className="text-sm md:text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                    <span
+                      className="font-bold mr-1"
+                      style={{
+                        color: isHovered ? activeColor : 'rgba(255,255,255,0.9)',
+                        transition: 'color 0.2s ease',
+                      }}
+                    >
+                      {svc.title}.
+                    </span>
                     {svc.description}
                   </p>
-                  <div className="mt-4">
-                    <span
-                      className="text-xs font-semibold uppercase tracking-widest"
-                      style={{ color: '#D85A30' }}
-                    >
-                      Learn more →
-                    </span>
-                  </div>
-                </motion.div>
+                </div>
 
-                {/* Collapsed label */}
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center"
-                  animate={{ opacity: isActive ? 0 : 1 }}
-                  transition={{ duration: 0.3 }}
-                >
+                {/* Bottom: icon */}
+                <div className="mt-8">
+                  <Icon
+                    className="w-8 h-8 transition-all duration-300"
+                    style={{ color: isHovered ? activeColor : 'rgba(255,255,255,0.2)' }}
+                  />
+                </div>
+
+                {/* Hover glow corner */}
+                {isHovered && (
                   <div
-                    className="flex flex-col items-center gap-4"
-                    style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-                  >
-                    <span
-                      className="font-bold"
-                      style={{ fontSize: '2.2rem', color: 'rgba(216,90,48,0.55)', letterSpacing: '-0.02em', ...helvetica }}
-                    >
-                      {svc.number}
-                    </span>
-                    <span
-                      className="font-semibold tracking-wide text-white/80"
-                      style={{ fontSize: '0.9rem', ...helvetica }}
-                    >
-                      {svc.title}
-                    </span>
-                  </div>
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Mobile accordion */}
-        <div className="flex flex-col gap-3 lg:hidden">
-          {services.map((svc, index) => {
-            const isActive = activeIndex === index;
-            return (
-              <motion.div
-                key={svc.id}
-                className="relative overflow-hidden rounded-2xl"
-                animate={{ height: isActive ? 320 : 72 }}
-                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-                onClick={() => setActiveIndex(index)}
-                style={{
-                  border: isActive ? '1px solid rgba(216,90,48,0.5)' : '1px solid rgba(255,255,255,0.06)',
-                }}
-              >
-                <Image src={svc.imagePath} alt={svc.title} fill className="object-cover" />
-                <motion.div
-                  className="absolute inset-0"
-                  animate={{ background: isActive ? 'rgba(10,10,10,0.75)' : 'rgba(10,10,10,0.8)' }}
-                />
-                <motion.div
-                  className="absolute inset-0 flex flex-col justify-end p-6"
-                  animate={{ opacity: isActive ? 1 : 0 }}
-                >
-                  <span className="text-4xl font-bold" style={{ color: 'rgba(216,90,48,0.25)', ...helvetica }}>{svc.number}</span>
-                  <h3 className="text-xl font-bold text-white mt-1" style={helvetica}>{svc.title}</h3>
-                  <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.65)', ...helvetica }}>{svc.description}</p>
-                </motion.div>
-                <motion.div
-                  className="absolute inset-0 flex items-center px-6 gap-4"
-                  animate={{ opacity: isActive ? 0 : 1 }}
-                >
-                  <span className="text-2xl font-bold" style={{ color: 'rgba(216,90,48,0.4)', ...helvetica }}>{svc.number}</span>
-                  <span className="text-base font-semibold text-white" style={helvetica}>{svc.title}</span>
-                </motion.div>
-              </motion.div>
+                    className="absolute top-0 left-0 w-24 h-24 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(circle at top left, ${activeColor}18 0%, transparent 70%)`,
+                    }}
+                  />
+                )}
+              </div>
             );
           })}
         </div>

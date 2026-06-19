@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 const projects = [
   {
@@ -14,6 +12,7 @@ const projects = [
       { value: '30%', label: 'faster check-in' },
       { value: '500+', label: 'rooms synced' },
     ],
+    tag: 'IoT · Hospitality',
   },
   {
     id: 'ai',
@@ -24,6 +23,7 @@ const projects = [
       { value: '10x', label: 'faster extraction' },
       { value: '99%', label: 'accuracy' },
     ],
+    tag: 'AI · LLM',
   },
   {
     id: 'crodlin',
@@ -34,6 +34,7 @@ const projects = [
       { value: '6wks', label: 'to ship MVP' },
       { value: '100%', label: 'adoption' },
     ],
+    tag: 'SaaS · Platform',
   },
   {
     id: 'retail',
@@ -44,160 +45,139 @@ const projects = [
       { value: '40%', label: 'less stockouts' },
       { value: '2M+', label: 'events/day' },
     ],
-  }
+    tag: 'Analytics · Retail',
+  },
+  {
+    id: 'healthsync',
+    company: 'HealthSync',
+    title: 'Platform Migration',
+    desc: 'Migrated a monolith healthcare platform to microservices with zero downtime.',
+    stats: [
+      { value: '0',    label: 'downtime hours' },
+      { value: '50k+', label: 'users migrated' },
+    ],
+    tag: 'Cloud · Healthcare',
+  },
 ];
 
 export default function PortfolioSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
-  };
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
-  };
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section id="work" className="pt-2 pb-24 md:pt-4 md:pb-32 overflow-hidden relative" style={{ background: '#0A0A0A' }}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-          <div>
-            <span className="reveal text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
-              OUR WORK
-            </span>
-            <h2 className="reveal text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-              Innovation, engineered<br />
-              <span className="text-[#D85A30]">by Crodlin</span>
-            </h2>
+    <section id="work" className="pt-16 pb-24 md:pt-20 md:pb-32 overflow-hidden relative" style={{ background: '#0A0A0A' }}>
+      <div className="px-6">
+
+        {/* Header */}
+        <div className="flex flex-col items-center text-center gap-3 mb-14">
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
+            OUR WORK
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            Innovation, engineered <span className="text-[#D85A30]">by Crodlin</span>
+          </h2>
+        </div>
+
+        {/* 5-card grid: 3 top + 2 bottom centered */}
+        <div className="flex flex-col gap-5">
+
+          {/* Row 1: 3 cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {projects.slice(0, 3).map((project) => (
+              <Card key={project.id} project={project} hovered={hovered} setHovered={setHovered} />
+            ))}
           </div>
-          <p className="max-w-xs text-sm md:text-base lg:text-lg leading-relaxed md:text-right" style={{ color: 'rgba(255,255,255,0.45)' }}>
-            Real products, real results — built by engineers who care about outcomes, not just output.
-          </p>
+
+          {/* Row 2: 2 cards centered */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:max-w-[66.66%] md:mx-auto w-full">
+            {projects.slice(3).map((project) => (
+              <Card key={project.id} project={project} hovered={hovered} setHovered={setHovered} />
+            ))}
+          </div>
+
         </div>
-
-        {/* Tabs */}
-        <div className="reveal reveal-delay-1 flex flex-wrap items-center gap-3 mb-16 max-w-4xl">
-          <button 
-            onClick={handlePrev}
-            className="w-10 h-10 rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] flex items-center justify-center text-white transition-colors border border-[#333]"
-          >
-            <ArrowLeft className="w-4 h-4" />
-          </button>
-
-          {projects.map((p, idx) => (
-            <button
-              key={p.id}
-              onClick={() => setActiveIndex(idx)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                activeIndex === idx 
-                  ? 'bg-white text-[#0D0D0D]' 
-                  : 'bg-[#1A1A1A] text-[#999] hover:text-white border border-[#333]'
-              }`}
-            >
-              {p.company}
-            </button>
-          ))}
-
-          <button 
-            onClick={handleNext}
-            className="w-10 h-10 rounded-full bg-[#1A1A1A] hover:bg-[#2A2A2A] flex items-center justify-center text-white transition-colors border border-[#333]"
-          >
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-
-        {/* 3D Carousel Cards */}
-        <div className="relative w-full max-w-[1000px] mx-auto h-[500px] md:h-[600px] flex justify-center perspective-1000">
-          {projects.map((project, idx) => {
-            // Determine relative position
-            let position = 'hidden'; // far away
-            let zIndex = 0;
-            let transform = '';
-            let opacity = 0;
-
-            if (idx === activeIndex) {
-              position = 'center';
-              zIndex = 30;
-              transform = 'translateX(0) scale(1) rotate(0deg)';
-              opacity = 1;
-            } else if (idx === (activeIndex - 1 + projects.length) % projects.length) {
-              position = 'left';
-              zIndex = 20;
-              transform = 'translateX(-60%) scale(0.85) rotate(-6deg)';
-              opacity = 0.5;
-            } else if (idx === (activeIndex + 1) % projects.length) {
-              position = 'right';
-              zIndex = 20;
-              transform = 'translateX(60%) scale(0.85) rotate(6deg)';
-              opacity = 0.5;
-            }
-
-            return (
-              <div
-                key={project.id}
-                className="absolute top-0 w-full max-w-sm md:max-w-md lg:max-w-lg h-[450px] md:h-[550px] rounded-[2rem] p-8 md:p-10 flex flex-col transition-all duration-700 ease-in-out cursor-pointer"
-                style={{
-                  zIndex,
-                  transform,
-                  opacity,
-                  pointerEvents: position === 'center' ? 'auto' : 'none',
-                  background: 'rgba(255,255,255,0.04)',
-                  backdropFilter: 'blur(24px)',
-                  WebkitBackdropFilter: 'blur(24px)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  boxShadow: '0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
-                }}
-                onClick={() => {
-                  if (position === 'left') handlePrev();
-                  if (position === 'right') handleNext();
-                }}
-              >
-                {/* Card Content */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded bg-white/10 border border-white/20 flex items-center justify-center">
-                    <span className="text-xs font-bold text-white">{project.company.substring(0,2)}</span>
-                  </div>
-                  <span className="font-bold text-white">{project.company}</span>
-                </div>
-
-                <p className="text-white/60 text-sm md:text-base leading-relaxed mb-8">
-                  {project.desc}
-                </p>
-
-                <div className="grid grid-cols-2 gap-4 mb-auto">
-                  {project.stats.map((stat, i) => (
-                    <div key={i}>
-                      <div className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</div>
-                      <div className="text-xs text-white/40 leading-snug">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Decorative bottom mockup */}
-                <div className="w-full h-40 md:h-48 rounded-t-2xl border-t border-x border-white/10 mt-8 relative overflow-hidden flex items-end justify-center"
-                  style={{ background: 'rgba(255,255,255,0.03)' }}>
-                  <div className="w-3/4 h-5/6 rounded-t-xl border border-white/10 flex flex-col"
-                    style={{ background: 'rgba(255,255,255,0.06)' }}>
-                     <div className="h-6 border-b border-white/10 flex items-center px-3 gap-1">
-                       <div className="w-2 h-2 rounded-full bg-red-400/70"></div>
-                       <div className="w-2 h-2 rounded-full bg-yellow-400/70"></div>
-                       <div className="w-2 h-2 rounded-full bg-green-400/70"></div>
-                     </div>
-                     <div className="p-4 flex flex-col gap-2">
-                       <div className="h-2 w-1/2 bg-white/10 rounded"></div>
-                       <div className="h-2 w-3/4 bg-white/[0.06] rounded"></div>
-                       <div className="h-2 w-full bg-white/[0.06] rounded"></div>
-                     </div>
-                  </div>
-                </div>
-
-              </div>
-            );
-          })}
-        </div>
-
       </div>
     </section>
+  );
+}
+
+function Card({
+  project,
+  hovered,
+  setHovered,
+}: {
+  project: typeof projects[0];
+  hovered: string | null;
+  setHovered: (id: string | null) => void;
+}) {
+  const isHovered = hovered === project.id;
+  const isDimmed  = hovered !== null && !isHovered;
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(project.id)}
+      onMouseLeave={() => setHovered(null)}
+      className="rounded-2xl p-7 flex flex-col gap-5 transition-all duration-300 cursor-default"
+      style={{
+        background: isHovered ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.03)',
+        border: `1px solid ${isHovered ? 'rgba(216,90,48,0.35)' : 'rgba(255,255,255,0.07)'}`,
+        opacity: isDimmed ? 0.45 : 1,
+        boxShadow: isHovered ? '0 0 40px rgba(216,90,48,0.08)' : 'none',
+        transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
+      }}
+    >
+      {/* Top row */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white shrink-0"
+            style={{ background: 'rgba(216,90,48,0.15)', border: '1px solid rgba(216,90,48,0.25)' }}
+          >
+            {project.company.substring(0, 2)}
+          </div>
+          <span className="text-white font-semibold text-sm">{project.company}</span>
+        </div>
+        <span
+          className="text-[9px] uppercase tracking-widest font-semibold px-2.5 py-1 rounded-full"
+          style={{ background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.35)', border: '1px solid rgba(255,255,255,0.08)' }}
+        >
+          {project.tag}
+        </span>
+      </div>
+
+      {/* Title */}
+      <h3 className="text-white font-bold text-lg leading-snug">{project.title}</h3>
+
+      {/* Desc */}
+      <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
+        {project.desc}
+      </p>
+
+      {/* Stats */}
+      <div className="flex gap-6 pt-2 border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+        {project.stats.map((stat, i) => (
+          <div key={i}>
+            <div className="text-2xl font-bold text-white">{stat.value}</div>
+            <div className="text-[10px] uppercase tracking-wider mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Decorative mockup bar */}
+      <div
+        className="w-full h-28 rounded-xl flex flex-col overflow-hidden"
+        style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
+      >
+        <div className="h-6 flex items-center px-3 gap-1.5" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="w-2 h-2 rounded-full bg-red-400/50" />
+          <div className="w-2 h-2 rounded-full bg-yellow-400/50" />
+          <div className="w-2 h-2 rounded-full bg-green-400/50" />
+        </div>
+        <div className="p-3 flex flex-col gap-2">
+          <div className="h-1.5 w-2/5 rounded-full" style={{ background: 'rgba(216,90,48,0.25)' }} />
+          <div className="h-1.5 w-3/5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }} />
+          <div className="h-1.5 w-4/5 rounded-full" style={{ background: 'rgba(255,255,255,0.04)' }} />
+        </div>
+      </div>
+    </div>
   );
 }

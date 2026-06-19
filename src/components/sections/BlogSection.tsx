@@ -75,8 +75,8 @@ export default function BlogSection() {
           {/* LEFT — heading aligned to same left edge as max-w-7xl sections */}
           <div className="hidden md:flex flex-col justify-between shrink-0 py-2 pr-8"
             style={{
-              paddingLeft: 'max(calc((100vw - 1280px) / 2 + 48px), 48px)',
-              width: 'clamp(300px, calc((100vw - 1280px) / 2 + 48px + 280px), 460px)',
+              paddingLeft: '24px',
+              width: 'clamp(300px, 360px, 460px)',
             }}
           >
             <div>

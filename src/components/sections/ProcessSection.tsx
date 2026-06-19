@@ -86,16 +86,13 @@ export default function ProcessSection() {
       style={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #0A0A0A 0%, #050505 100%)' }}
     >
       {/* Section header */}
-      <div className="relative z-10 pt-20 pb-4 px-6 md:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        <div>
-          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
-            HOW IT WORKS
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Simple process,{' '}
-            <span className="text-[#D85A30]">serious results</span>
-          </h2>
-        </div>
+      <div className="relative z-10 pt-20 pb-4 px-6 w-full flex flex-col items-center text-center gap-3">
+        <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
+          HOW IT WORKS
+        </span>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+          Simple process, <span className="text-[#D85A30]">serious results</span>
+        </h2>
       </div>
 
       {/* ── MOBILE: vertical steps ── */}

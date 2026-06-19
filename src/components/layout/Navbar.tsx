@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
@@ -22,7 +22,7 @@ export default function Navbar() {
       <div
         className="w-full transition-all duration-500"
         style={{
-          maxWidth: scrolled ? '1186px' : '1300px',
+          maxWidth: scrolled ? '820px' : '1300px',
           background: scrolled ? 'rgba(13, 13, 13, 0.72)' : 'transparent',
           backdropFilter: scrolled ? 'blur(20px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',

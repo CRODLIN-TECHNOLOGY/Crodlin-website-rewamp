@@ -21,7 +21,7 @@ export default function TrustStrip() {
         <div className="flex items-center">
 
           {/* Label */}
-          <div className="shrink-0 px-8 py-5 border-r border-[#1A1A1A]">
+          <div className="shrink-0 px-6 py-5 border-r border-[#1A1A1A]">
             <span className="text-sm uppercase tracking-[0.2em] text-[#444] font-semibold whitespace-nowrap">
               Trusted by businesses across India and beyond
             </span>

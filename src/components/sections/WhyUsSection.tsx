@@ -108,23 +108,17 @@ function CellLabel({ label, sub }: { label: string; sub: string }) {
 export default function WhyUsSection() {
   return (
     <section className="py-24 md:py-32 overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0A0A0A 0%, #3D1508 50%, #0A0A0A 100%)' }}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        <div>
-          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
-            THE CRODLIN DIFFERENCE
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Not your average <br className="hidden md:block" />
-            <span className="text-[#555]">development agency.</span>
-          </h2>
-        </div>
-        <p className="max-w-xs text-sm md:text-base lg:text-lg leading-relaxed md:text-right" style={{ color: 'rgba(255,255,255,0.45)' }}>
-          We partner with ambitious teams to design, build, and ship digital products that scale. No fluff — just engineering that works.
-        </p>
+      <div className="px-6 mb-12 flex flex-col items-center text-center gap-3">
+        <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
+          THE CRODLIN DIFFERENCE
+        </span>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+          Not your <span className="text-[#D85A30]">average</span> development agency.
+        </h2>
       </div>
 
       {/* Dynamic video grid */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="px-6">
         <div className="relative" style={{ height: '600px' }}>
           <DynamicFrameLayout
             frames={frames}

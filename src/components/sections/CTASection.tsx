@@ -23,24 +23,20 @@ export default function CTASection() {
       {/* Ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#D85A30]/8 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="px-6 relative z-10">
 
-        {/* Heading — centered */}
-        <div className="text-center mb-14">
-          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
+        {/* Heading */}
+        <div className="mb-14 flex flex-col items-center text-center gap-3">
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
             GET IN TOUCH
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
             Contact our team
           </h2>
-          <p className="text-sm md:text-base text-white/45 max-w-xl mx-auto leading-relaxed">
-            Got questions about our services or ready to start a project? We&apos;re here to help.
-            Chat with our team 24/7 and get started in less than 5 minutes.
-          </p>
         </div>
 
         {/* Two-column */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-12 items-start max-w-5xl mx-auto">
 
           {/* Left: Form */}
           <div

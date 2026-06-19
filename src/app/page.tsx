@@ -20,11 +20,11 @@ export default function HomePage() {
         <TrustStrip />
         <ServicesSection />
         <WhyUsSection />
-        <TestimonialsSection />
+        <ProcessSection />
         <PortfolioSection />
+        <TestimonialsSection />
         <FounderSection />
         <BlogSection />
-        <ProcessSection />
         <CTASection />
       </main>
       <Footer />

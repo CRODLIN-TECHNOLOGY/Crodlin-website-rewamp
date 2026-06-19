@@ -9,7 +9,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
-  --font-heading: var(--font-syne), 'Syne', sans-serif;
+  --font-heading: var(--font-syne), sans-serif;
   --font-handwritten: var(--font-caveat), 'Caveat', cursive;
 
   --color-ember: #d85a30;
@@ -156,6 +156,11 @@ html { scroll-behavior: smooth; }
 /* Font heading utility */
 .font-heading {
   font-family: var(--font-heading);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-rifton), var(--font-syne), sans-serif;
+  font-weight: 400;
 }
 .font-handwritten {
   font-family: var(--font-handwritten);
