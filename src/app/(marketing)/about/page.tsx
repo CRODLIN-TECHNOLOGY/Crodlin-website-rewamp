@@ -19,7 +19,7 @@ export default function AboutPage() {
     <div className="bg-[#0A0A0A] min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="pt-40 pb-32 max-w-screen-2xl mx-auto px-10">
+      <section className="pt-40 pb-32 max-w-screen-2xl mx-auto px-4 md:px-10">
         <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-6">
           <motion.span variants={fadeUp} className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
             About us
@@ -56,7 +56,7 @@ export default function AboutPage() {
       </div>
 
       {/* ── Vision ── */}
-      <section className="py-32 max-w-screen-2xl mx-auto px-10">
+      <section className="pt-32 pb-0 max-w-screen-2xl mx-auto px-4 md:px-10">
         <div className="flex flex-col gap-3 items-center text-center mb-20">
           <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
             What drives us
@@ -66,7 +66,7 @@ export default function AboutPage() {
           </h2>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-center">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -89,21 +89,21 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-            className="md:w-1/2"
+            className="w-full md:w-1/2"
           >
-            <Image src="/vision-image.png" alt="Vision" width={0} height={0} sizes="50vw" className="w-[85%] h-auto mx-auto" />
+            <Image src="/vision-image.png" alt="Vision" width={0} height={0} sizes="50vw" className="w-full md:w-[85%] h-auto md:mx-auto block" />
           </motion.div>
         </div>
       </section>
 
       {/* ── Divider ── */}
-      <div className="max-w-screen-2xl mx-auto px-10">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-10 py-16">
         <div className="h-px bg-white/[0.06]" />
       </div>
 
       {/* ── Mission ── */}
-      <section className="py-32 max-w-screen-2xl mx-auto px-10">
-        <div className="flex flex-col md:flex-row-reverse gap-16 md:gap-24 items-center">
+      <section className="max-w-screen-2xl mx-auto px-4 md:px-10 py-0 my-0">
+        <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-24 items-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -128,14 +128,14 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
             className="md:w-1/2"
           >
-            <Image src="/mission-image.png" alt="Mission" width={0} height={0} sizes="50vw" className="w-[85%] h-auto mx-auto" />
+            <Image src="/mission-image.png" alt="Mission" width={0} height={0} sizes="50vw" className="w-full md:w-[85%] h-auto md:mx-auto block" />
           </motion.div>
         </div>
       </section>
 
       {/* ── CTA ── */}
       <section className="py-24 border-t border-white/[0.06]">
-        <div className="max-w-screen-2xl mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div className="max-w-screen-2xl mx-auto px-4 md:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div className="flex flex-col gap-3">
             <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">Let's build</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
