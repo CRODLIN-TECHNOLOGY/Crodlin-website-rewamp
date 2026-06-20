@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0D0D0D] overflow-hidden">
+    <footer className="bg-[#110A07] overflow-hidden">
 
       {/* ── Top row: logo + tagline left, newsletter right ─────── */}
       <div className="px-12 md:px-16 pt-16 pb-12 flex flex-col md:flex-row md:items-start md:justify-between gap-10">
@@ -63,7 +63,7 @@ export default function Footer() {
           <Link href="/"         className="text-[#888] hover:text-white text-sm transition-colors">Home</Link>
           <Link href="#services" className="text-[#888] hover:text-white text-sm transition-colors">Services</Link>
           <Link href="#work"     className="text-[#888] hover:text-white text-sm transition-colors">Work</Link>
-          <Link href="#about"    className="text-[#888] hover:text-white text-sm transition-colors">About</Link>
+          <Link href="/about"   className="text-[#888] hover:text-white text-sm transition-colors">About</Link>
           <Link href="#contact"  className="text-[#888] hover:text-white text-sm transition-colors">Contact us</Link>
         </div>
 

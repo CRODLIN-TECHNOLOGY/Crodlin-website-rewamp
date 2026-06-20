@@ -1,39 +1,157 @@
-import React from 'react'
+'use client';
+
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+};
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
 
 export default function AboutPage() {
   return (
-    <div className="bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-foreground text-4xl font-extrabold tracking-tight sm:text-5xl">
-            About Us
-          </h1>
-          <p className="text-muted-foreground mt-6 text-lg leading-relaxed">
-            Crodlin Technology is a premier software engineering and IT
-            consultancy. We are dedicated to partnering with businesses to
-            architect, build, and deploy custom software systems that solve
-            complex problems.
-          </p>
+    <div className="bg-[#0A0A0A] min-h-screen">
+
+      {/* ── Hero ── */}
+      <section className="pt-40 pb-32 max-w-screen-2xl mx-auto px-10">
+        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-6">
+          <motion.span variants={fadeUp} className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
+            About us
+          </motion.span>
+          <motion.h1
+            variants={fadeUp}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight max-w-4xl"
+          >
+            We are Crodlin.
+          </motion.h1>
+          <motion.p variants={fadeUp} className="text-white/40 text-base md:text-lg leading-relaxed max-w-2xl">
+            A software engineering studio that builds products people actually use. No noise. No bloat. Just clean code and shipped products.
+          </motion.p>
+        </motion.div>
+      </section>
+
+      {/* ── Curved divider ── */}
+      <div className="w-full overflow-hidden leading-none">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" className="w-full h-[60px]" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M0 40 Q360 0 720 30 Q1080 60 1440 20"
+            stroke="url(#orangeGrad)"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          <defs>
+            <linearGradient id="orangeGrad" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#D85A30" stopOpacity="0.8" />
+              <stop offset="50%" stopColor="#D85A30" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#D85A30" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      {/* ── Vision ── */}
+      <section className="py-32 max-w-screen-2xl mx-auto px-10">
+        <div className="flex flex-col gap-3 items-center text-center mb-20">
+          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
+            What drives us
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            By engineers who give a <span className="text-[#D85A30]">damn.</span>
+          </h2>
         </div>
 
-        <div className="border-border mt-16 grid grid-cols-1 gap-12 border-t pt-16 md:grid-cols-2">
-          <div>
-            <h2 className="text-foreground text-2xl font-bold">Our Mission</h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              To empower enterprises and high-growth startups by delivering
-              custom-crafted software products with superior performance,
-              reliability, and modern UX design.
+        <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+            className="md:w-1/2 flex flex-col gap-8"
+          >
+            <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">Vision</span>
+            <h3 className="text-xl md:text-2xl font-bold text-white leading-tight">
+              A world where great software is the norm, <span className="text-[#D85A30]">not the exception.</span>
+            </h3>
+            <p className="text-white/40 text-base md:text-lg leading-[1.9]">
+              Too many businesses settle for software that barely works — slow, fragile, and outdated the moment it ships. We believe every company, regardless of size, deserves products built to a standard that actually moves the needle. Our vision is to raise the bar for what software looks and feels like — one product at a time.
             </p>
-          </div>
-          <div>
-            <h2 className="text-foreground text-2xl font-bold">Our Values</h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              We believe in extreme transparency, rapid delivery velocity, clean
-              engineering architecture, and continuous innovation.
-            </p>
-          </div>
+            <div className="w-12 h-px bg-[#D85A30]" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+            className="md:w-1/2"
+          >
+            <Image src="/vision-image.png" alt="Vision" width={0} height={0} sizes="50vw" className="w-[85%] h-auto mx-auto" />
+          </motion.div>
         </div>
+      </section>
+
+      {/* ── Divider ── */}
+      <div className="max-w-screen-2xl mx-auto px-10">
+        <div className="h-px bg-white/[0.06]" />
       </div>
+
+      {/* ── Mission ── */}
+      <section className="py-32 max-w-screen-2xl mx-auto px-10">
+        <div className="flex flex-col md:flex-row-reverse gap-16 md:gap-24 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+            className="md:w-1/2 flex flex-col gap-8 md:items-end md:text-right"
+          >
+            <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">Mission</span>
+            <h3 className="text-xl md:text-2xl font-bold text-white leading-tight">
+              Partner with builders and turn ambitious ideas into <span className="text-[#D85A30]">reliable products.</span>
+            </h3>
+            <p className="text-white/40 text-base md:text-lg leading-[1.9]">
+              We exist to close the gap between what a business needs and what it actually ships. Our mission is to be the engineering partner that founders and teams can rely on — not just to write code, but to think through problems, challenge assumptions, and deliver work that holds up long after launch.
+            </p>
+            <div className="w-12 h-px bg-[#D85A30]" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+            className="md:w-1/2"
+          >
+            <Image src="/mission-image.png" alt="Mission" width={0} height={0} sizes="50vw" className="w-[85%] h-auto mx-auto" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="py-24 border-t border-white/[0.06]">
+        <div className="max-w-screen-2xl mx-auto px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="flex flex-col gap-3">
+            <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">Let's build</span>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
+              Got a project in mind?
+            </h2>
+            <p className="text-white/40 text-base md:text-lg max-w-md">We'd love to hear what you're building.</p>
+          </div>
+          <Link
+            href="/#contact"
+            className="shrink-0 border border-[#D85A30] text-[#D85A30] hover:bg-[#D85A30] hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 text-sm"
+          >
+            Get a free consultation →
+          </Link>
+        </div>
+      </section>
+
     </div>
-  )
+  );
 }

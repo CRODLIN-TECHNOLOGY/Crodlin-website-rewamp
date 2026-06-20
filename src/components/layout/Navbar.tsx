@@ -47,13 +47,18 @@ export default function Navbar() {
 
           {/* Desktop Nav — links absolutely centered */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-5">
-            {['Services', 'Work', 'Blog', 'About'].map((item) => (
+            {[
+              { label: 'Services', href: '#services' },
+              { label: 'Work', href: '#work' },
+              { label: 'Blog', href: '#blog' },
+              { label: 'About', href: '/about' },
+            ].map(({ label, href }) => (
               <Link
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={label}
+                href={href}
                 className="text-sm font-medium text-white/70 hover:text-white transition-colors"
               >
-                {item}
+                {label}
               </Link>
             ))}
           </div>
@@ -79,13 +84,18 @@ export default function Navbar() {
               <SheetContent side="right" className="bg-[#0D0D0D] flex flex-col gap-8 pt-16 border-l border-white/[0.06]">
                 <SheetTitle className="sr-only">Menu</SheetTitle>
                 <div className="flex flex-col gap-6 text-center">
-                  {['Services', 'Work', 'Blog', 'About'].map((item) => (
+                  {[
+                    { label: 'Services', href: '#services' },
+                    { label: 'Work', href: '#work' },
+                    { label: 'Blog', href: '#blog' },
+                    { label: 'About', href: '/about' },
+                  ].map(({ label, href }) => (
                     <Link
-                      key={item}
-                      href={`#${item.toLowerCase()}`}
+                      key={label}
+                      href={href}
                       className="text-xl font-semibold text-white hover:text-[#D85A30] transition-colors"
                     >
-                      {item}
+                      {label}
                     </Link>
                   ))}
                 </div>
