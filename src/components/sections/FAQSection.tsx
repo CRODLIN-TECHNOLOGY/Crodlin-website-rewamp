@@ -30,10 +30,6 @@ const FAQS = [
     question: "How does pricing work?",
     answer: "We offer fixed-scope project pricing and monthly retainers for ongoing work. You get a detailed quote after a free discovery call — no vague estimates.",
   },
-  {
-    question: "Do you offer post-launch support?",
-    answer: "Yes. We offer ongoing maintenance, monitoring, and feature development after launch. Most clients stay on a retainer so we can keep iterating together.",
-  },
 ];
 
 export default function FAQSection() {
@@ -55,10 +51,10 @@ export default function FAQSection() {
           </h2>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 md:gap-6 items-start -ml-32">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-6 items-stretch md:-ml-16">
 
           {/* Left: accordion */}
-          <div className="w-full md:w-[60%]">
+          <div className="w-full md:w-[78%]">
             <div className="flex flex-col">
               {FAQS.map((faq, i) => (
                 <div key={i} className="border-b border-white/[0.08]">
@@ -98,15 +94,15 @@ export default function FAQSection() {
           </div>
 
           {/* Right: sticky image */}
-          <div className="hidden md:block md:w-[40%]">
-            <div className="sticky top-24">
+          <div className="hidden md:block md:w-[50%] ml-auto" style={{ alignSelf: 'stretch' }}>
+            <div className="sticky top-20 translate-x-12 -mt-20">
               <Image
                 src="/faqs.png"
                 alt="FAQs"
                 width={0}
                 height={0}
-                sizes="40vw"
-                className="w-full h-auto"
+                sizes="55vw"
+                className="w-[230%] h-auto"
               />
             </div>
           </div>

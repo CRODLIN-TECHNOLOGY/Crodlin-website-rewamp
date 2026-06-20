@@ -67,6 +67,34 @@ export default function BlogSection() {
 
   return (
     <section id="blog" className="bg-[#0D0D0D] py-24 overflow-hidden">
+
+      {/* Mobile header */}
+      <div className="md:hidden px-6 mb-8">
+        <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30] mb-3 block">
+          INSIGHTS
+        </span>
+        <h2 className="text-3xl font-bold text-white leading-tight tracking-tight">
+          The Crodlin <span style={{ color: '#D85A30' }}>Journal</span>
+        </h2>
+        <p className="text-[#555] text-sm mt-3 leading-relaxed">
+          Discover our latest thoughts, ideas and innovations.
+        </p>
+        <div className="flex items-center gap-3 mt-6">
+          <button
+            onClick={() => scroll('left')}
+            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-[#D85A30] hover:text-[#D85A30] transition-all duration-200"
+          >
+            ←
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-[#D85A30] hover:text-[#D85A30] transition-all duration-200"
+          >
+            →
+          </button>
+        </div>
+      </div>
+
       <div className="flex items-stretch">
 
         {/* Side-by-side: heading left, cards right */}
