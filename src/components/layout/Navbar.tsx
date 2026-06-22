@@ -50,7 +50,7 @@ export default function Navbar() {
             {[
               { label: 'Services', href: '#services' },
               { label: 'Work', href: '#work' },
-              { label: 'Blog', href: '#blog' },
+              { label: 'Blog', href: '/blog' },
               { label: 'About', href: '/about' },
             ].map(({ label, href }) => (
               <Link
@@ -87,7 +87,7 @@ export default function Navbar() {
                   {[
                     { label: 'Services', href: '#services' },
                     { label: 'Work', href: '#work' },
-                    { label: 'Blog', href: '#blog' },
+                    { label: 'Blog', href: '/blog' },
                     { label: 'About', href: '/about' },
                   ].map(({ label, href }) => (
                     <Link

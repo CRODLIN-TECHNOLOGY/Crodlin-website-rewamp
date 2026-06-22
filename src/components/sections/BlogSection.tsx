@@ -170,30 +170,45 @@ function BlogCard({
   return (
     <Link
       href="#blog"
-      className="group shrink-0 rounded-2xl overflow-hidden flex flex-col cursor-pointer transition-all duration-500"
+      className="group shrink-0 rounded-2xl overflow-hidden flex flex-col cursor-pointer transition-all duration-500 relative"
       style={{
         width:           'clamp(260px, calc((100vw - 420px) / 2.4), 340px)',
         height:          '460px',
         scrollSnapAlign: 'start',
-        border:     hovered ? '1px solid rgba(216,90,48,0.6)' : '1px solid rgba(255,255,255,0.07)',
-        background: hovered
-          ? 'linear-gradient(180deg, #1a1a1a 0%, #3d1200 100%)'
-          : '#111',
+        border:          hovered ? '1px solid rgba(216,90,48,0.6)' : '1px solid rgba(255,255,255,0.07)',
+        background:      '#111',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* bg image — fades in on hover */}
+      <div
+        className="absolute inset-0 bg-cover bg-center rounded-2xl transition-opacity duration-500"
+        style={{
+          backgroundImage: `url('/blog-card.jpg')`,
+          opacity: hovered ? 1 : 0,
+        }}
+      />
+      {/* dark overlay so text stays readable */}
+      <div
+        className="absolute inset-0 rounded-2xl transition-opacity duration-500"
+        style={{
+          background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 100%)',
+          opacity: hovered ? 1 : 0,
+        }}
+      />
+
       {/* TOP — tags, title, date */}
-      <div className="flex flex-col p-5 gap-3" style={{ flex: '0 0 auto' }}>
+      <div className="relative flex flex-col p-5 gap-3" style={{ flex: '0 0 auto' }}>
         <div className="flex flex-wrap gap-2">
           {article.tags.map(tag => (
             <span
               key={tag}
               className="text-[10px] font-semibold px-2.5 py-1 rounded-full transition-all duration-300"
               style={{
-                background: hovered ? 'rgba(216,90,48,0.15)' : 'rgba(255,255,255,0.05)',
-                color:      hovered ? '#D85A30' : '#888',
-                border:     hovered ? '1px solid rgba(216,90,48,0.3)' : '1px solid rgba(255,255,255,0.08)',
+                background: hovered ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.05)',
+                color:      hovered ? '#fff' : '#888',
+                border:     hovered ? '1px solid rgba(216,90,48,0.6)' : '1px solid rgba(255,255,255,0.08)',
               }}
             >
               {tag}
@@ -203,15 +218,15 @@ function BlogCard({
 
         <h3
           className="font-heading font-bold leading-snug transition-colors duration-300"
-          style={{ fontSize: 'clamp(1rem, 1.5vw, 1.15rem)', color: hovered ? '#fff' : 'rgba(255,255,255,0.85)' }}
+          style={{ fontSize: 'clamp(1rem, 1.5vw, 1.15rem)', color: 'rgba(255,255,255,0.85)' }}
         >
           {article.title}
         </h3>
 
-        <span className="text-xs text-[#444]">{article.date}</span>
+        <span className="text-xs text-[#888]">{article.date}</span>
       </div>
 
-      {/* BOTTOM — image fills remaining space */}
+      {/* BOTTOM — article image */}
       <div className="relative flex-1 overflow-hidden mx-4 mb-4 rounded-xl">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -224,11 +239,11 @@ function BlogCard({
         />
         {/* Read More overlay on hover */}
         <div
-          className="absolute bottom-0 left-0 right-0 p-4 flex items-center gap-2 text-[#D85A30] text-sm font-semibold transition-all duration-300"
+          className="absolute bottom-0 left-0 right-0 p-4 flex items-center gap-2 text-white text-sm font-semibold transition-all duration-300"
           style={{
-            opacity:          hovered ? 1 : 0,
-            transform:        hovered ? 'translateY(0)' : 'translateY(8px)',
-            background:       'linear-gradient(to top, rgba(17,17,17,0.95) 0%, transparent 100%)',
+            opacity:    hovered ? 1 : 0,
+            transform:  hovered ? 'translateY(0)' : 'translateY(8px)',
+            background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)',
           }}
         >
           Read More <span style={{ transform: hovered ? 'translateX(4px)' : 'translateX(0)', transition: 'transform 0.2s', display: 'inline-block' }}>→</span>
