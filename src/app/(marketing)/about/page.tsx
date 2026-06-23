@@ -19,21 +19,52 @@ export default function AboutPage() {
     <div className="bg-[#0A0A0A] min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="pt-40 pb-32 max-w-screen-2xl mx-auto px-4 md:px-10">
-        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-6">
-          <motion.span variants={fadeUp} className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
-            About us
-          </motion.span>
-          <motion.h1
-            variants={fadeUp}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight max-w-4xl"
-          >
-            We are Crodlin.
-          </motion.h1>
-          <motion.p variants={fadeUp} className="text-white/40 text-base md:text-lg leading-relaxed max-w-2xl">
-            A software engineering studio that builds products people actually use. No noise. No bloat. Just clean code and shipped products.
-          </motion.p>
-        </motion.div>
+      <section className="relative w-full h-screen flex items-end overflow-hidden">
+        {/* bg image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('/hero-image.jpg')` }}
+        />
+        {/* dark overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+
+        {/* content — bottom, asset left / text right */}
+        <div className="relative w-full max-w-screen-2xl mx-auto px-4 md:px-10 pb-20 flex items-center justify-between gap-8">
+
+          {/* text — left side */}
+          <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-8 md:max-w-3xl">
+            <motion.h1
+              variants={fadeUp}
+              className="font-bold tracking-tight text-white leading-none"
+              style={{ fontSize: 'clamp(3rem, 7vw, 7rem)' }}
+            >
+              We are <br/><span className="text-[#D85A30]">Crodlin.</span>
+            </motion.h1>
+            <motion.p variants={fadeUp} className="text-white/50 leading-relaxed" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.35rem)' }}>
+              A software engineering studio that builds products people actually use. No noise. No bloat. Just clean code and shipped products.
+            </motion.p>
+            <motion.div variants={fadeUp} className="flex items-center gap-6 pt-2">
+              <a
+                href="#vision"
+                className="px-7 py-3 border border-[#D85A30] text-[#D85A30] hover:bg-[#D85A30] hover:text-white text-sm font-bold uppercase tracking-widest rounded-full transition-all duration-200"
+              >
+                Our Story →
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* 3D asset — bottom right */}
+          <motion.img
+            src="/blog-asset.png"
+            alt=""
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden md:block w-[500px] lg:w-[660px] xl:w-[800px] object-contain select-none pointer-events-none"
+            style={{ marginRight: '-100px', marginBottom: '0px' }}
+          />
+
+        </div>
       </section>
 
       {/* ── Curved divider ── */}
@@ -56,7 +87,7 @@ export default function AboutPage() {
       </div>
 
       {/* ── Vision ── */}
-      <section className="pt-32 pb-0 max-w-screen-2xl mx-auto px-4 md:px-10">
+      <section id="vision" className="pt-32 pb-0 max-w-screen-2xl mx-auto px-4 md:px-10">
         <div className="flex flex-col gap-3 items-center text-center mb-20">
           <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">
             What drives us
