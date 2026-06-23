@@ -127,20 +127,6 @@ export default function WhyUsSection() {
             hoverSize={6}
             gapSize={3}
           />
-          {/* Text overlay grid — same 3×3, pointer-events-none so hover still works on videos */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              display: 'grid',
-              gridTemplateRows: '1fr 1fr 1fr',
-              gridTemplateColumns: '1fr 1fr 1fr',
-              gap: '3px',
-            }}
-          >
-            {cellText.map((cell, i) => (
-              <CellLabel key={i} {...cell} />
-            ))}
-          </div>
         </div>
       </div>
     </section>
