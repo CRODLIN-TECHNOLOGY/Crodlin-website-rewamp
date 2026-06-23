@@ -47,8 +47,8 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden md:block w-[500px] lg:w-[660px] xl:w-[800px] object-contain select-none pointer-events-none"
-            style={{ marginLeft: '-100px' }}
+            className="hidden md:block w-[300px] lg:w-[380px] xl:w-[460px] object-contain select-none pointer-events-none"
+            style={{ marginLeft: '-40px' }}
           />
 
           {/* text — right */}
