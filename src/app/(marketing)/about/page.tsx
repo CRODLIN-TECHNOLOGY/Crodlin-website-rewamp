@@ -53,16 +53,6 @@ export default function AboutPage() {
             </motion.div>
           </motion.div>
 
-          {/* 3D asset — bottom right */}
-          <motion.img
-            src="/about.jpg"
-            alt=""
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden md:block w-[300px] lg:w-[380px] xl:w-[460px] object-contain select-none pointer-events-none"
-            style={{ marginRight: '-40px', marginBottom: '0px' }}
-          />
 
         </div>
       </section>
