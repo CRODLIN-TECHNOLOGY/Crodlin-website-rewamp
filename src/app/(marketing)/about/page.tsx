@@ -60,7 +60,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden md:block w-[500px] lg:w-[640px] xl:w-[780px] object-contain select-none pointer-events-none"
+            className="hidden md:block w-[260px] lg:w-[320px] xl:w-[380px] object-contain select-none pointer-events-none"
           />
 
         </div>
