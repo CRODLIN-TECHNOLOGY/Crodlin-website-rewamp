@@ -16,7 +16,7 @@ function StatValue({ value }: { value: string }) {
 
   useEffect(() => {
     const controls = animate(count, target, {
-      duration: 1.2,
+      duration: 0.3,
       delay: 0.9,
       ease: 'easeOut',
     });
@@ -35,7 +35,7 @@ function StatValue({ value }: { value: string }) {
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.06, delayChildren: 0.05 },
   },
 };
 
@@ -44,7 +44,7 @@ const fadeUp = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 
@@ -143,7 +143,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           className="relative lg:flex-1 h-40 lg:h-full overflow-hidden"
           style={{
             marginLeft: '-380px',

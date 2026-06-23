@@ -7,13 +7,13 @@ import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/ca
 import { Code, Lightbulb, Bot, Smartphone } from 'lucide-react';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 };
 
 const ICON_MAP = {
@@ -46,7 +46,7 @@ export default function ServicesPage() {
             alt=""
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="hidden md:block w-[300px] lg:w-[380px] xl:w-[460px] object-contain select-none pointer-events-none"
             style={{ marginLeft: '60px' }}
           />

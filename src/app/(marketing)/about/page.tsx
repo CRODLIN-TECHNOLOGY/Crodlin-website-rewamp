@@ -5,13 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 };
 
 export default function AboutPage() {
@@ -59,7 +59,7 @@ export default function AboutPage() {
             alt=""
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="hidden md:block w-[260px] lg:w-[340px] xl:w-[420px] object-contain select-none pointer-events-none"
             style={{ marginRight: '120px' }}
           />
@@ -99,10 +99,10 @@ export default function AboutPage() {
 
         <div className="flex flex-col md:flex-row gap-8 md:gap-24 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
             className="md:w-1/2 flex flex-col gap-8"
           >
             <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">Vision</span>
@@ -116,10 +116,10 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+            transition={{ duration: 0.3, delay: 0.05, ease: [0.22, 1, 0.36, 1] as const }}
             className="w-full md:w-1/2"
           >
             <Image src="/vision-image.png" alt="Vision" width={0} height={0} sizes="50vw" className="w-full md:w-[85%] h-auto md:mx-auto block" />
@@ -136,10 +136,10 @@ export default function AboutPage() {
       <section className="max-w-screen-2xl mx-auto px-4 md:px-10 py-0 my-0">
         <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-24 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
             className="md:w-1/2 flex flex-col gap-8 md:items-end md:text-right"
           >
             <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#D85A30]">Mission</span>
@@ -153,10 +153,10 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+            transition={{ duration: 0.3, delay: 0.05, ease: [0.22, 1, 0.36, 1] as const }}
             className="md:w-1/2"
           >
             <Image src="/mission-image.png" alt="Mission" width={0} height={0} sizes="50vw" className="w-full md:w-[85%] h-auto md:mx-auto block" />

@@ -172,7 +172,7 @@ export default function PortfolioSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.35 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.1, ease: "easeInOut" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
               className="absolute inset-0"
             >
               <img

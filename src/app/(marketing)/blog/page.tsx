@@ -5,13 +5,13 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
 };
 
 const articles = [
@@ -44,7 +44,7 @@ export default function BlogPage() {
             alt=""
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="hidden md:block w-[380px] lg:w-[460px] xl:w-[540px] object-contain select-none pointer-events-none"
             style={{ marginLeft: '60px', marginBottom: '0px', transform: 'rotate(-8deg)' }}
           />
@@ -102,10 +102,10 @@ export default function BlogPage() {
           {articles.map((article, i) => (
             <motion.div
               key={article.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.3, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
             >
               <ArticleCard article={article} />
             </motion.div>
