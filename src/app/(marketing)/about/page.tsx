@@ -23,7 +23,7 @@ export default function AboutPage() {
         {/* bg image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('/hero-image.jpg')` }}
+          style={{ backgroundImage: `url('/about.jpg')` }}
         />
         {/* dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
