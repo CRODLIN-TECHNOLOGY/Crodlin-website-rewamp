@@ -55,12 +55,12 @@ export default function AboutPage() {
 
           {/* about image — right */}
           <motion.img
-            src="/about.jpg"
+            src="/about-asset.png"
             alt=""
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden md:block w-[300px] lg:w-[380px] xl:w-[460px] object-cover rounded-2xl select-none pointer-events-none"
+            className="hidden md:block w-[500px] lg:w-[640px] xl:w-[780px] object-contain select-none pointer-events-none"
           />
 
         </div>
