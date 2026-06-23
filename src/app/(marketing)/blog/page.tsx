@@ -46,7 +46,7 @@ export default function BlogPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="hidden md:block w-[300px] lg:w-[380px] xl:w-[460px] object-contain select-none pointer-events-none"
-            style={{ marginLeft: '60px', marginBottom: '0px' }}
+            style={{ marginLeft: '60px', marginBottom: '0px', transform: 'rotate(-8deg)' }}
           />
 
           {/* text — right side */}
