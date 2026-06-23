@@ -56,7 +56,7 @@ export default function BlogPage() {
               className="font-bold tracking-tight text-white leading-none"
               style={{ fontSize: 'clamp(3rem, 7vw, 7rem)' }}
             >
-              The Crodlin <br/><span className="text-[#D85A30]">Journal.</span>
+              From the <br/><span className="text-[#D85A30]">Bench.</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="text-white/50 leading-relaxed" style={{ fontSize: 'clamp(1rem, 1.5vw, 1.35rem)' }}>
               Engineering deep-dives, product decisions, and startup lessons from people building every day.
