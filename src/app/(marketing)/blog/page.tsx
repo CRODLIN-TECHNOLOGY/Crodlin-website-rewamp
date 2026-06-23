@@ -40,7 +40,7 @@ export default function BlogPage() {
 
           {/* 3D asset — bottom left */}
           <motion.img
-            src="/about-asset.png"
+            src="/blog-asset.png"
             alt=""
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
