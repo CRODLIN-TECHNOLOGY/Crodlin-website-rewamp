@@ -23,7 +23,7 @@ export default function AboutPage() {
         {/* bg image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('/about.jpg')` }}
+          style={{ backgroundImage: `url('/hero-image.jpg')` }}
         />
         {/* dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
@@ -55,7 +55,7 @@ export default function AboutPage() {
 
           {/* 3D asset — bottom right */}
           <motion.img
-            src="/blog-asset.png"
+            src="/about.jpg"
             alt=""
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
