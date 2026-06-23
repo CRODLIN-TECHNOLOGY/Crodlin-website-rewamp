@@ -48,7 +48,7 @@ export default function Navbar() {
           {/* Desktop Nav — links absolutely centered */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-5">
             {[
-              { label: 'Services', href: '#services' },
+              { label: 'Services', href: '/services' },
               { label: 'Work', href: '#work' },
               { label: 'Blog', href: '/blog' },
               { label: 'About', href: '/about' },
@@ -85,7 +85,7 @@ export default function Navbar() {
                 <SheetTitle className="sr-only">Menu</SheetTitle>
                 <div className="flex flex-col gap-6 text-center">
                   {[
-                    { label: 'Services', href: '#services' },
+                    { label: 'Services', href: '/services' },
                     { label: 'Work', href: '#work' },
                     { label: 'Blog', href: '/blog' },
                     { label: 'About', href: '/about' },

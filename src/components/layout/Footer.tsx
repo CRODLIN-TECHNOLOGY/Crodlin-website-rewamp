@@ -61,7 +61,7 @@ export default function Footer() {
         <div className="flex flex-col gap-3">
           <h4 className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#555] mb-1">Links</h4>
           <Link href="/"         className="text-[#888] hover:text-white text-sm transition-colors">Home</Link>
-          <Link href="#services" className="text-[#888] hover:text-white text-sm transition-colors">Services</Link>
+          <Link href="/services" className="text-[#888] hover:text-white text-sm transition-colors">Services</Link>
           <Link href="#work"     className="text-[#888] hover:text-white text-sm transition-colors">Work</Link>
           <Link href="/about"   className="text-[#888] hover:text-white text-sm transition-colors">About</Link>
           <Link href="#contact"  className="text-[#888] hover:text-white text-sm transition-colors">Contact us</Link>
