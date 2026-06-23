@@ -23,7 +23,7 @@ export default function AboutPage() {
         {/* bg image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('/about.jpg')` }}
+          style={{ backgroundImage: `url('/hero-image.jpg')` }}
         />
         {/* dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
@@ -53,6 +53,15 @@ export default function AboutPage() {
             </motion.div>
           </motion.div>
 
+          {/* about image — right */}
+          <motion.img
+            src="/about.jpg"
+            alt=""
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden md:block w-[300px] lg:w-[380px] xl:w-[460px] object-cover rounded-2xl select-none pointer-events-none"
+          />
 
         </div>
       </section>
