@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center"
-      style={{ padding: scrolled ? '12px 48px' : '18px 0px' }}
+      style={{ padding: scrolled ? '12px 16px' : '18px 0px' }}
     >
       <div
         className="w-full transition-all duration-500"
@@ -28,7 +28,7 @@ export default function Navbar() {
           WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
           border: scrolled ? '1px solid rgba(255,255,255,0.07)' : '1px solid transparent',
           borderRadius: scrolled ? '20px' : '0px',
-          padding: scrolled ? '10px 28px' : '0',
+          padding: scrolled ? '10px 20px' : '0 16px',
           boxShadow: scrolled ? '0 8px 32px rgba(0,0,0,0.4)' : 'none',
         }}
       >
