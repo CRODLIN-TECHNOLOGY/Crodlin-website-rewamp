@@ -8,6 +8,7 @@ import PortfolioSection from '@/components/sections/PortfolioSection';
 import FounderSection from '@/components/sections/FounderSection';
 import BlogSection from '@/components/sections/BlogSection';
 import ProcessSection from '@/components/sections/ProcessSection';
+import ConsultingSection from '@/components/sections/ConsultingSection';
 import FAQSection from '@/components/sections/FAQSection';
 import CTASection from '@/components/sections/CTASection';
 import Footer from '@/components/layout/Footer';
@@ -26,6 +27,7 @@ export default function HomePage() {
         <TestimonialsSection />
         {/* <FounderSection /> */}
         <BlogSection />
+        <ConsultingSection />
         <FAQSection />
         <CTASection />
       </main>

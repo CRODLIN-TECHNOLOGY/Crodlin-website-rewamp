@@ -66,7 +66,7 @@ export default function BlogSection() {
   };
 
   return (
-    <section id="blog" className="bg-[#0D0D0D] py-24 overflow-hidden">
+    <section id="blog" className="py-24 overflow-hidden" style={{ background: '#000000' }}>
 
       {/* Mobile header */}
       <div className="md:hidden px-6 mb-8">
